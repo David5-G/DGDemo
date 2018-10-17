@@ -25,6 +25,8 @@
 		63C24AC52176E69300F10F2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C24ABD2176E69300F10F2C /* Main.storyboard */; };
 		63C24AC62176E69300F10F2C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63C24ABF2176E69300F10F2C /* Info.plist */; };
 		63C24AC72176E69300F10F2C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24AC12176E69300F10F2C /* main.m */; };
+		63C24AD021770CD900F10F2C /* DGTouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24ACF21770CD900F10F2C /* DGTouchTableView.m */; };
+		63C24ADA2177168800F10F2C /* UIView+HitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24AD92177168800F10F2C /* UIView+HitTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,15 @@
 		63C24AC02176E69300F10F2C /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		63C24AC12176E69300F10F2C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		63C24AC22176E69300F10F2C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		63C24ACE21770CD900F10F2C /* DGTouchTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DGTouchTableView.h; sourceTree = "<group>"; };
+		63C24ACF21770CD900F10F2C /* DGTouchTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DGTouchTableView.m; sourceTree = "<group>"; };
+		63C24AD3217713EC00F10F2C /* UIResponder_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIResponder_api.h; sourceTree = "<group>"; };
+		63C24AD42177145300F10F2C /* UIGestureRecognizer_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIGestureRecognizer_api.h; sourceTree = "<group>"; };
+		63C24AD52177149A00F10F2C /* UITouch_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITouch_api.h; sourceTree = "<group>"; };
+		63C24AD6217714D600F10F2C /* UIEvent_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIEvent_api.h; sourceTree = "<group>"; };
+		63C24AD7217715B300F10F2C /* Summary_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Summary_api.h; sourceTree = "<group>"; };
+		63C24AD82177168800F10F2C /* UIView+HitTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+HitTest.h"; sourceTree = "<group>"; };
+		63C24AD92177168800F10F2C /* UIView+HitTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+HitTest.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +110,15 @@
 		63C24A742176CE6E00F10F2C /* DGDemo */ = {
 			isa = PBXGroup;
 			children = (
+				63C24AD1217713A300F10F2C /* API */,
 				63C24A8B2176D27E00F10F2C /* Masonry */,
 				63C24AB82176E69300F10F2C /* other */,
 				63C24A782176CE6E00F10F2C /* ViewController.h */,
 				63C24A792176CE6E00F10F2C /* ViewController.m */,
+				63C24AD82177168800F10F2C /* UIView+HitTest.h */,
+				63C24AD92177168800F10F2C /* UIView+HitTest.m */,
+				63C24ACE21770CD900F10F2C /* DGTouchTableView.h */,
+				63C24ACF21770CD900F10F2C /* DGTouchTableView.m */,
 				63C24AB52176E43300F10F2C /* UIScannerDemoVC.h */,
 				63C24AB62176E43300F10F2C /* UIScannerDemoVC.m */,
 				63C24A7E2176CE7000F10F2C /* Assets.xcassets */,
@@ -155,6 +171,26 @@
 				63C24ABF2176E69300F10F2C /* Info.plist */,
 			);
 			path = other;
+			sourceTree = "<group>";
+		};
+		63C24AD1217713A300F10F2C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				63C24AD2217713C100F10F2C /* UITouch */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		63C24AD2217713C100F10F2C /* UITouch */ = {
+			isa = PBXGroup;
+			children = (
+				63C24AD7217715B300F10F2C /* Summary_api.h */,
+				63C24AD3217713EC00F10F2C /* UIResponder_api.h */,
+				63C24AD42177145300F10F2C /* UIGestureRecognizer_api.h */,
+				63C24AD52177149A00F10F2C /* UITouch_api.h */,
+				63C24AD6217714D600F10F2C /* UIEvent_api.h */,
+			);
+			path = UITouch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +268,7 @@
 				63C24AAA2176D27F00F10F2C /* MASViewConstraint.m in Sources */,
 				63C24AA52176D27F00F10F2C /* MASCompositeConstraint.m in Sources */,
 				63C24AAB2176D27F00F10F2C /* NSArray+MASAdditions.m in Sources */,
+				63C24ADA2177168800F10F2C /* UIView+HitTest.m in Sources */,
 				63C24A7A2176CE6E00F10F2C /* ViewController.m in Sources */,
 				63C24AA82176D27F00F10F2C /* MASLayoutConstraint.m in Sources */,
 				63C24AAE2176D27F00F10F2C /* ViewController+MASAdditions.m in Sources */,
@@ -241,6 +278,7 @@
 				63C24AA62176D27F00F10F2C /* MASConstraint.m in Sources */,
 				63C24AB72176E43300F10F2C /* UIScannerDemoVC.m in Sources */,
 				63C24AC72176E69300F10F2C /* main.m in Sources */,
+				63C24AD021770CD900F10F2C /* DGTouchTableView.m in Sources */,
 				63C24AA72176D27F00F10F2C /* MASConstraintMaker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

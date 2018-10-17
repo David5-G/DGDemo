@@ -8,13 +8,13 @@
 
 #import "ViewController.h"
 #import "UIScannerDemoVC.h"
-
+#import "DGTouchTableView.h"
 
 
 #define kCell @"resuseCell"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic,weak) UITableView *tableView;
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,DGTouchTableViewDelegate>
+@property (nonatomic,weak) DGTouchTableView *tableView;
 @property (nonatomic,strong) NSArray *cellNameList;
 @end
 
@@ -43,7 +43,10 @@
     
 }
 
-#pragma mark - network request
+#pragma mark - interaction
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"-----------");
+}
 
 #pragma mark - UI
 - (void)setupUI {
@@ -53,10 +56,11 @@
 }
 
 - (void)setupTableView {
-    UITableView *tableV = [[UITableView alloc]init];
+    DGTouchTableView *tableV = [[DGTouchTableView alloc]init];
     self.tableView = tableV;
     tableV.delegate = self;
     tableV.dataSource = self;
+    tableV.touchDelegate = self;
     tableV.backgroundColor = UIColor.brownColor;
     
     [self.view addSubview:tableV];
@@ -69,6 +73,23 @@
     }];
 }
 
+#pragma mark - DGTouchTableViewDelegate
+- (void)tableView:(UITableView *)tableView touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    self.tableView.scrollEnabled = NO;
+    NSLog(@"tableView - touchesBegan");
+}
+
+- (void)tableView:(UITableView *)tableView touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"tableView - touchesMoved");
+}
+
+- (void)tableView:(UITableView *)tableView touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"tableView - touchesEnded");
+}
+
+- (void)tableView:(UITableView *)tableView touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"tableView - touchesCancelled");
+}
 
 #pragma mark - tableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
