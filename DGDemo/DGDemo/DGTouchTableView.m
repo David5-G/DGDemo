@@ -20,6 +20,7 @@
         [_touchDelegate tableView:self touchesBegan:touches withEvent:event];
     }
 }
+
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [super touchesMoved:touches withEvent:event];
     
@@ -27,6 +28,7 @@
         [_touchDelegate tableView:self touchesMoved:touches withEvent:event];
     }
 }
+
 -(void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     self.scrollEnabled = YES;
     [super touchesCancelled:touches withEvent:event];
@@ -35,6 +37,7 @@
         [_touchDelegate tableView:self touchesCancelled:touches withEvent:event];
     }
 }
+
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     self.scrollEnabled = YES;
     [super touchesEnded:touches withEvent:event];

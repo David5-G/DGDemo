@@ -18,40 +18,31 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 //剪切
-
-- (void)cut:(nullableid)senderNS_AVAILABLE_IOS(3_0);
+- (void)cut:(nullableid)sender  NS_AVAILABLE_IOS(3_0);
 
 //复制
-
-- (void)copy:(nullableid)senderNS_AVAILABLE_IOS(3_0);
+- (void)copy:(nullableid)sender  NS_AVAILABLE_IOS(3_0);
 
 //粘贴
-
-- (void)paste:(nullableid)senderNS_AVAILABLE_IOS(3_0);
+- (void)paste:(nullableid)sender  NS_AVAILABLE_IOS(3_0);
 
 //选择
-
 - (void)select:(nullableid)senderNS_AVAILABLE_IOS(3_0);
 
 //全选
-
 - (void)selectAll:(nullableid)senderNS_AVAILABLE_IOS(3_0);
 
 //删除
-
 - (void)delete:(nullableid)senderNS_AVAILABLE_IOS(3_2);
 
 //从左到右写入字符串(居左)
-
-- (void)makeTextWritingDirectionLeftToRight:(nullableid)senderNS_AVAILABLE_IOS(5_0);
+- (void)makeTextWritingDirectionLeftToRight:(nullableid)sender  NS_AVAILABLE_IOS(5_0);
 
 //从右到左写入字符串(居右)
-
-- (void)makeTextWritingDirectionRightToLeft:(nullableid)senderNS_AVAILABLE_IOS(5_0);
+- (void)makeTextWritingDirectionRightToLeft:(nullableid)sender  NS_AVAILABLE_IOS(5_0);
 
 //切换字体为黑体(粗体)
-
-- (void)toggleBoldface:(nullableid)senderNS_AVAILABLE_IOS(6_0);
+- (void)toggleBoldface:(nullableid)sender  NS_AVAILABLE_IOS(6_0);
 
 //切换字体为斜体
 
