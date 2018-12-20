@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "DGImagePickerManager.h"
 #import "DGImagePreviewVC.h"
+#import "DGToast.h"
 
 @interface ViewController ()<DGImagePickerManagerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *clipRectImageView;
@@ -80,10 +81,15 @@
         [imageArr addObject:self.imageView2.image];
     }
     
+    //没图,不能看
+    if (imageArr.count < 1) {
+        [DGToast showMsg:@"不选图片怎么预览?" duration:2.0];
+        return ;
+    }
     //2.跳转
     DGImagePreviewVC *previewVC = [[DGImagePreviewVC alloc]init];
     previewVC.isAssetPreview = NO;
-    previewVC.imageArr = imageArr;
+    [previewVC setPreviewImages:imageArr defaultIndex:1];
     [self presentViewController:previewVC animated:YES completion:nil];
 }
 

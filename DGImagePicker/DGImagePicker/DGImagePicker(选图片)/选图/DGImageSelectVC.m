@@ -11,7 +11,6 @@
 #import "DGImageClipVC.h"
 //view
 #import "DGToast.h"
-#import "DGSelectImgView.h"
 #import "DGAssetsGroupListTableViewCell.h"
 #import "DGAssetsListCollectionViewCell.h"
 //tool
@@ -25,7 +24,7 @@
 @property (nonatomic, strong) UIImageView *cameraImage;
 @end
 
-#define ORIGINAL_MAX_WIDTH 640.0f
+#define kImageMaxW 750.0f
 #define kScreenW       ([UIScreen mainScreen].bounds.size.width)
 #define kScreenH       ([UIScreen mainScreen].bounds.size.height)
 
@@ -34,7 +33,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = DGIP_RGB(202, 203, 204);
+        self.backgroundColor = DGIP_COLOR_GRAY;
         [self.contentView addSubview:self.cameraImage];
     }
     return self;
@@ -107,7 +106,6 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.assetsGroupIndex = 0;
     }
     return self;
 }
@@ -115,6 +113,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.assetsGroupIndex = 0;
     [self setupDimension];
     [self setupUI];
 }
@@ -125,6 +124,47 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
     [self.collectionView reloadData];
     [self.confirmButton setTitle:[NSString stringWithFormat:@"完成(%zd)", self.selectedIndexSet.count] forState:UIControlStateNormal];
+}
+
+#pragma mark - setter
+- (void)setAssertsGroupArray:(NSArray *)assertsGroupArray {
+    _assertsGroupArray = assertsGroupArray;
+    
+    if (assertsGroupArray.count > _assetsGroupIndex) {
+        self.assetsGroup = _assertsGroupArray[_assetsGroupIndex];
+    } else {
+        [self.assets removeAllObjects];
+    }
+}
+
+- (void)setAssetsGroup:(ALAssetsGroup *)assetsGroup {
+    _assetsGroup = assetsGroup;
+    
+    //1.清空
+    [self.assets removeAllObjects];
+    
+    //2.设置NaviTitle
+    NSString *title = [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
+    [self updataNaviTitle:title];
+    
+    //3.Load assets
+    //3.1  设置assets filter
+    [self.assetsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+    
+    //3.2 Load
+    [self.assetsGroup enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        if (result) {
+            NSString *type = [result valueForProperty:ALAssetPropertyType];
+            
+            if ([type isEqualToString:ALAssetTypePhoto]) {
+                result.isSelected = [self isHaveTheAsset:result];
+                [self.assets addObject:result];
+            }
+        }
+    }];
+    
+    //4.刷新collectionView
+    [self.collectionView reloadData];
 }
 
 #pragma mark - statusBar
@@ -207,6 +247,13 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
 }
 
+
+/** 更新 previewButton状态,confirmButton的title */
+-(void)updatePreviewButtonStatusAndConfirmButtonTitle {
+    [self.confirmButton setTitle:[NSString stringWithFormat:@"完成(%zd)", self.selectedIndexSet.count] forState:UIControlStateNormal];
+    self.previewButton.enabled = self.selectedIndexSet.count;
+}
+
 /** 设置CollectionView */
 -(void)setupCollectionView {
     //1.layout
@@ -220,7 +267,10 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
     //2.clollctionV
     CGFloat collectionViewH = DGIP_SCREEN_H - DGIP_STATUS_AND_NAVI_BAR_HEIGHT - _bottomViewHeight;
-    UICollectionView *collectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, DGIP_STATUS_AND_NAVI_BAR_HEIGHT, DGIP_SCREEN_W, collectionViewH) collectionViewLayout:layout];
+    
+    //y设为0
+    //DGImagePickerManager中添加naviC.navigationBar.translucent = NO;后做的适配
+    UICollectionView *collectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, DGIP_SCREEN_W, collectionViewH) collectionViewLayout:layout];
     self.collectionView = collectionV;
     [self.view addSubview:collectionV];
     
@@ -240,7 +290,10 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 -(void)setupTableView {
     //1.创建
     CGFloat height = DGIP_SCREEN_H - DGIP_STATUS_AND_NAVI_BAR_HEIGHT - DGIP_HOME_INDICATOR_HEIGHT;
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, DGIP_STATUS_AND_NAVI_BAR_HEIGHT, DGIP_SCREEN_W, height) style:UITableViewStylePlain];
+    
+    //y设为0
+    //DGImagePickerManager中添加naviC.navigationBar.translucent = NO;后做的适配
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, DGIP_SCREEN_W, height) style:UITableViewStylePlain];
     self.tableView = tableView;
     [self.view addSubview:tableView];
     
@@ -256,7 +309,9 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
     
     //1.bottomView
-    CGFloat y = DGIP_SCREEN_H - _bottomViewHeight;
+    //多减去DGIP_STATUS_AND_NAVI_BAR_HEIGHT
+    //DGImagePickerManager中添加naviC.navigationBar.translucent = NO;后做的适配
+    CGFloat y = DGIP_SCREEN_H - _bottomViewHeight-DGIP_STATUS_AND_NAVI_BAR_HEIGHT;
     UIView *bottomV = [[UIView alloc] initWithFrame:CGRectMake(0, y, DGIP_SCREEN_W, _bottomViewHeight)];
     self.bottomView = bottomV;
     [self.view addSubview:bottomV];
@@ -274,7 +329,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     showBtn.enabled = NO;
     [showBtn setTitle:@"预览  " forState:UIControlStateNormal];
     showBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [showBtn setTitleColor:DGIP_RGB(94, 154, 236) forState:UIControlStateNormal];
+    [showBtn setTitleColor:DGIP_COLOR_NAVI forState:UIControlStateNormal];
     [showBtn setTitleColor:UIColor.grayColor forState:UIControlStateDisabled];
     [showBtn addTarget:self action:@selector(clickPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -285,7 +340,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     self.confirmButton = sureBtn;
     [bottomV addSubview:sureBtn];
     
-    sureBtn.backgroundColor = DGIP_RGB(83, 144, 233);
+    sureBtn.backgroundColor = DGIP_COLOR_NAVI;
     [sureBtn setTitle:@"完成()" forState:UIControlStateNormal];
     sureBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [sureBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
@@ -441,30 +496,19 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
     NSInteger row = indexPath.row;
     
-    //1.row为0,获取照相机cell
+    //1.照相机cell
     if ( row == 0) {
         DGCameraCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCameraCellIdentifier forIndexPath:indexPath];
-
         return cell;
     }
 
-    //2.获取cell
+    //2.CollectionViewCell
     DGAssetsListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
 
-    //设置cell
-    //2.1 overlayView
-    if (self.needClip) {
-        cell.selectView.coverView.hidden = YES;
-    } else {
-        cell.selectView.coverView.hidden = NO;
-    }
-
-    //2.2 asset
-    ALAsset *curAsset = [self.assets objectAtIndex: row - 1];
+    ALAsset *curAsset = [self.assets objectAtIndex: row-1];
     cell.asset = curAsset;
-    cell.selectView.isSelected = curAsset.isSelected;
-
-    //2.3 return
+    cell.hasBeenSelected = curAsset.isSelected;
+    cell.checkmarkHidden = self.needClip;
     return cell;
 }
 
@@ -472,60 +516,59 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
     NSInteger row = indexPath.row;
     
-    //1.相机
+    //1.相机cell
     if (row == 0) {
         [self presentToCamera];
         return;
     }
 
-    //2.
+    //2.CollectionViewCell
     DGAssetsListCollectionViewCell *cell = (DGAssetsListCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
 
-    ALAsset *curAsset = [self.assets objectAtIndex:row - 1];
+    ALAsset *curAsset = [self.assets objectAtIndex:row-1];
 
+    //2.1 需要裁剪
     if (self.needClip) {
         DGIP_WeakS(weakSelf);
-
         [ALAsset getorignalImage:curAsset completion:^(UIImage *image) {
             [weakSelf pushToImageClipVC:image];
         }];
         return;
     }
 
+    //2.2 选图
+    //2.2.1 取消选中
     if ([self isHaveTheAsset:curAsset]) {
         [self removeAssetWithAsset:curAsset];
-
-        cell.selectView.isSelected = NO;
+        cell.hasBeenSelected = NO;
         curAsset.isSelected = NO;
-        [self.confirmButton setTitle:[NSString stringWithFormat:@"完成(%zd)", self.selectedIndexSet.count] forState:UIControlStateNormal];
-        self.previewButton.enabled = self.selectedIndexSet.count;
+        [self updatePreviewButtonStatusAndConfirmButtonTitle];
 
-    } else {
+    }else {//2.2.2 添加选中
+        
+        //2.2.2.1 超选了
         if (self.selectedIndexSet.count >= self.maxCount) {
-            
             NSString *msg = [NSString stringWithFormat:@"您最多只能选择%zd张图片", self.maxCount];
             [DGToast showMsg:msg duration:2.0];
             return;
         }
 
+        //2.2.2.2 未超选
         [ALAsset getorignalImage:curAsset completion:^(UIImage *image) {
 
             NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
             NSInteger length = imageData.length;
 
+            //2.2.2.2.1 图片过大,不处理
             if (imageData.length / (1024.0 * 1024.0) > 5.0) {
                 [[DGToast makeText:@"图片大于5M"] showWithOffset:DGIP_SCREEN_H/2 - 40];
-
-            } else {
+                
+            } else {//2.2.2.2.2 处理选图
                 [self.selectedIndexSet addObject:curAsset];
-                cell.selectView.isSelected = YES;
+                cell.hasBeenSelected = YES;
                 curAsset.isSelected = YES;
-
-                [self.confirmButton setTitle:[NSString stringWithFormat:@"完成(%zd)", self.selectedIndexSet.count] forState:UIControlStateNormal];
-                self.previewButton.enabled = self.selectedIndexSet.count;
+                [self updatePreviewButtonStatusAndConfirmButtonTitle];
             }
-
-//            BBLOG (@"图片按0.8压缩后的大小%.2f", length / (1024.0 * 1024.0));
         }];
     }
 }
@@ -540,7 +583,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 
         //1.裁剪
         if (self.needClip) {
-            selectImage = [self imageByScalingToMaxSize:selectImage];
+            selectImage = [self imageByScaledToMaxSize:selectImage];
             [self pushToImageClipVC:selectImage];
 
         } else {
@@ -564,104 +607,69 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 }
 
 #pragma mark - image tool
-- (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage {
-    if (sourceImage.size.width < ORIGINAL_MAX_WIDTH) return sourceImage;
-    CGFloat btWidth = 0.0f;
-    CGFloat btHeight = 0.0f;
-    if (sourceImage.size.width > sourceImage.size.height) {
-        btHeight = ORIGINAL_MAX_WIDTH;
-        btWidth = sourceImage.size.width * (ORIGINAL_MAX_WIDTH / sourceImage.size.height);
+- (UIImage *)imageByScaledToMaxSize:(UIImage *)image {
+    
+    //1.小于kImageMaxW, 不处理
+    if (image.size.width < kImageMaxW){ return image;}
+    
+    //2.计算目标size
+    CGFloat targetW = 0.0f;
+    CGFloat targetH = 0.0f;
+    if (image.size.width > image.size.height) {
+        targetH = kImageMaxW;
+        targetW = image.size.width * (targetH / image.size.height);
     } else {
-        btWidth = ORIGINAL_MAX_WIDTH;
-        btHeight = sourceImage.size.height * (ORIGINAL_MAX_WIDTH / sourceImage.size.width);
+        targetW = kImageMaxW;
+        targetH = image.size.height * (targetW / image.size.width);
     }
-    CGSize targetSize = CGSizeMake(btWidth, btHeight);
-    return [self imageByScalingAndCroppingForSourceImage:sourceImage targetSize:targetSize];
+    CGSize targetSize = CGSizeMake(targetW, targetH);
+    
+    //3.缩放画图
+    return [self imageByScaledAndClipedForSourceImage:image targetSize:targetSize];
 }
-- (UIImage *)imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize {
-    UIImage *newImage = nil;
-    CGSize imageSize = sourceImage.size;
-    CGFloat width = imageSize.width;
-    CGFloat height = imageSize.height;
-    CGFloat targetWidth = targetSize.width;
-    CGFloat targetHeight = targetSize.height;
-    CGFloat scaleFactor = 0.0;
-    CGFloat scaledWidth = targetWidth;
-    CGFloat scaledHeight = targetHeight;
-    CGPoint thumbnailPoint = CGPointMake(0.0, 0.0);
-    if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
-        CGFloat widthFactor = targetWidth / width;
-        CGFloat heightFactor = targetHeight / height;
 
-        if (widthFactor > heightFactor)
-            scaleFactor = widthFactor;    // scale to fit height
-        else
-            scaleFactor = heightFactor;    // scale to fit width
-        scaledWidth = width * scaleFactor;
-        scaledHeight = height * scaleFactor;
-
-        // center the image
-        if (widthFactor > heightFactor) {
-            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
-        } else if (widthFactor < heightFactor) {
-            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
-        }
+/** 对目标图片进行缩放,裁剪 */
+- (UIImage *)imageByScaledAndClipedForSourceImage:(UIImage *)image targetSize:(CGSize)targetSize {
+    
+    //1.过滤,不需要改变的情况
+    if (CGSizeEqualToSize(image.size, targetSize)){
+        return image;
     }
-    UIGraphicsBeginImageContext(targetSize);    // this will crop
-    CGRect thumbnailRect = CGRectZero;
-    thumbnailRect.origin = thumbnailPoint;
-    thumbnailRect.size.width = scaledWidth;
-    thumbnailRect.size.height = scaledHeight;
+    
+    //2.要裁剪
+    //2.1 准备参数
+    //宽高
+    CGFloat w = image.size.width;
+    CGFloat h = image.size.height;
+    CGFloat targetW = targetSize.width;
+    CGFloat targetH = targetSize.height;
 
-    [sourceImage drawInRect:thumbnailRect];
-
-    newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    if (newImage == nil) BBLOG (@"could not scale image");
-
-    //pop the context to get back to the default
+    //缩放比例
+    CGFloat wFactor = targetW / w;
+    CGFloat hFactor = targetH / h;
+    CGFloat scaleFactor = wFactor > hFactor ? wFactor : hFactor;
+    
+    //缩放后的宽高
+    CGFloat scaledW = w * scaleFactor;
+    CGFloat scaledH = h * scaleFactor;
+    
+    // center the image
+    CGPoint drawPoint = CGPointMake(0.0, 0.0);
+    if (wFactor > hFactor) {
+        drawPoint.y = (targetH - scaledH) * 0.5;
+    } else if (wFactor < hFactor) {
+        drawPoint.x = (targetW - scaledW) * 0.5;
+    }
+    
+    //2.2 绘制
+    UIGraphicsBeginImageContext(targetSize);// 画布大小
+    CGRect drawRect = CGRectMake(drawPoint.x, drawPoint.y, scaledW, scaledH);//贴图大小,及位置
+    [image drawInRect:drawRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    //2.3 return
     return newImage;
-}
-
-#pragma mark - setter
-- (void)setAssertsGroupArray:(NSArray *)assertsGroupArray {
-    _assertsGroupArray = assertsGroupArray;
-    
-    if (assertsGroupArray.count > _assetsGroupIndex) {
-        self.assetsGroup = _assertsGroupArray[_assetsGroupIndex];
-    } else {
-        [self.assets removeAllObjects];
-    }
-}
-
-- (void)setAssetsGroup:(ALAssetsGroup *)assetsGroup {
-    _assetsGroup = assetsGroup;
-
-    //1.清空
-    [self.assets removeAllObjects];
-    
-    //2.设置NaviTitle
-    NSString *title = [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
-    [self updataNaviTitle:title];
-
-    //3.Load assets
-    //3.1  设置assets filter
-    [self.assetsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
-
-    //3.2 Load
-    [self.assetsGroup enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-        if (result) {
-            NSString *type = [result valueForProperty:ALAssetPropertyType];
-
-            if ([type isEqualToString:ALAssetTypePhoto]) {
-                result.isSelected = [self isHaveTheAsset:result];
-                [self.assets addObject:result];
-            }
-        }
-    }];
-
-    //4.刷新collectionView
-    [self.collectionView reloadData];
 }
 
 #pragma mark - selected操作

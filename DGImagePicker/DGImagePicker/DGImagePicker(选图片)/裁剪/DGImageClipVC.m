@@ -137,7 +137,9 @@
         h = self.rectangleSize.height;
         w =  h * (imgW/imgH);
     }
-    self.showImgView.center = self.view.center;
+    CGPoint center = self.view.center;
+    center.y -= DGIP_STATUS_AND_NAVI_BAR_HEIGHT/2.0;//DGImagePickerManager中添加naviC.navigationBar.translucent = NO;后做的适配
+    self.showImgView.center = center;
     self.showImgView.bounds = CGRectMake(0, 0, w, h);
     
     //3.add
@@ -185,7 +187,7 @@
     self.clipLineView = [[UIView alloc]init];
     
     //2.设置frame
-    self.clipLineView.center = self.view.center;
+    self.clipLineView.center = self.showImgView.center;
     self.clipLineView.bounds = CGRectMake(0, 0, self.rectangleSize.width, self.rectangleSize.height);
     self.clipLineView.autoresizingMask = UIViewAutoresizingNone;
     

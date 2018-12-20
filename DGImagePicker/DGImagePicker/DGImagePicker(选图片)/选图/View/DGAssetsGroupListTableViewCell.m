@@ -9,6 +9,7 @@
 
 #import "DGAssetsGroupListTableViewCell.h"
 #import "DGIP_Header.h"
+#import "DGCheckmarkView.h"
 
 @interface DGAssetsGroupListTableViewCell()
 
@@ -35,14 +36,14 @@
     if (_selectBtn == nil) {
         _selectBtn = [[UIButton alloc]init];
         _selectBtn.userInteractionEnabled = NO;
-        [_selectBtn setBackgroundImage:[UIImage imageNamed:@"dgip_checkMark_blue"] forState:UIControlStateNormal];
+        [_selectBtn setBackgroundImage:[DGCheckmarkView checkmarkImage:DGIP_COLOR_NAVI] forState:UIControlStateNormal];
     }
     return _selectBtn;
 }
 -(UIView *)grayLine {
     if (_grayLine == nil) {
         _grayLine = [[UIView alloc]init];
-        _grayLine.backgroundColor = DGIP_RGB(202, 203, 204);
+        _grayLine.backgroundColor = DGIP_COLOR_GRAY;
     }
     return _grayLine;
 }
@@ -70,8 +71,8 @@
     self.iconView.frame = CGRectMake(iconViewX, (h-iconViewW)/2.0, iconViewW, iconViewW);
     
     //2.selectBtn
-    CGFloat selectBtnW = 25;
-    CGFloat selectBtnRightSpace = 20;
+    CGFloat selectBtnW = 35;
+    CGFloat selectBtnRightSpace = 14;
     self.selectBtn.frame = CGRectMake(w-selectBtnW-selectBtnRightSpace, (h-selectBtnW)/2.0, selectBtnW, selectBtnW);
     
     //3.titleL

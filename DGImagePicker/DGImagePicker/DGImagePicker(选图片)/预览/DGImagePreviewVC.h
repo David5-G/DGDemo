@@ -25,8 +25,8 @@
 @property (nonatomic,copy) void(^finishBlock)(void);
 
 
-#pragma mark - 只是图片数组的预览
-@property (nonatomic,copy) NSArray <UIImage *>*imageArr;
+#pragma mark - 仅预览图片
+-(void)setPreviewImages:(NSArray <UIImage *>*)imageArr defaultIndex:(NSUInteger)defaultIndex;
 
 @end
 

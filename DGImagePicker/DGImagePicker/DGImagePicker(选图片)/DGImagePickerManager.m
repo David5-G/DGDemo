@@ -116,15 +116,16 @@
     UINavigationController *naviC = [[UINavigationController alloc] initWithRootViewController:imageSelectedVC];
     //设置导航,
     [naviC.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:UIColor.whiteColor}];
-    naviC.navigationBar.barTintColor = DGIP_RGB(0, 205, 145);
+    
     naviC.navigationBar.tintColor = UIColor.whiteColor;
+    naviC.navigationBar.barTintColor = DGIP_COLOR_NAVI;
+    naviC.navigationBar.translucent = NO;//会让滚动视图,下移
     //只有设为UIBarStyleBlack时,子VC的preferredStatusBarStyle才会被调用
     naviC.navigationBar.barStyle = UIBarStyleBlack;
     //naviC.modalPresentationCapturesStatusBarAppearance = YES;
     
     [weakSelf.delegateViewController presentViewController:naviC animated:YES completion:NULL];
 }
-
 
 #pragma mark - 选图片相关
 /** 将ALAsset转换成image */

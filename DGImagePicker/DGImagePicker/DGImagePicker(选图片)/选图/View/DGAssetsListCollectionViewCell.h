@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DGSelectImgView.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface DGAssetsListCollectionViewCell : UICollectionViewCell
 
-/** 选择标记View */
-@property (nonatomic, strong) DGSelectImgView *selectView;
-
 @property (nonatomic, strong) ALAsset *asset;
+
+@property (nonatomic,assign) BOOL checkmarkHidden;
+
+/** 是否被选中 */
+@property (nonatomic,assign) BOOL hasBeenSelected;
 
 @end

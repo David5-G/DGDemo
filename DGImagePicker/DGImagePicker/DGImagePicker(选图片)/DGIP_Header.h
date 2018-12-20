@@ -16,6 +16,8 @@
 #define DGIP_RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #define DGIP_RGB(r,g,b)    DGIP_RGBA(r,g,b,1.0f)
 
+#define DGIP_COLOR_NAVI     DGIP_RGBA(0, 205, 145, 1)
+#define DGIP_COLOR_GRAY     DGIP_RGBA(202, 203, 204, 1)
 
 //---------------------------------------------------
 #pragma mark - 尺寸(宽高)

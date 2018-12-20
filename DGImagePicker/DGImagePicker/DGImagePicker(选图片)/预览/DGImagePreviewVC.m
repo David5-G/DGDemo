@@ -9,6 +9,7 @@
 #import "DGImagePreviewVC.h"
 #import "DGToast.h"
 #import "DGIP_Header.h"
+#import "DGCheckmarkView.h"
 
 static const float maxScale = 3.0;
 static const float minScale = 0.5;
@@ -187,6 +188,8 @@ static NSString *const cellId = @"DGImagePreviewCollectionCell";
 
 @property (nonatomic,weak) UICollectionView *collectionView;
 
+@property (nonatomic,copy) NSArray <UIImage *>*imageArr;
+
 /** 选中图片的个数 */
 @property (nonatomic,assign) NSInteger selectCount;
 
@@ -221,9 +224,9 @@ static NSString *const cellId = @"DGImagePreviewCollectionCell";
 
 - (UIButton *)selectButton {
     if (_selectButton == nil) {
-        _selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_selectButton setImage:[UIImage imageNamed:@"dgip_checkMark_unSelected"] forState:(UIControlStateNormal)];
-        [_selectButton setImage:[UIImage imageNamed:@"dgip_checkMark_selected"] forState:(UIControlStateSelected)];
+        _selectButton = [[UIButton alloc]init];
+        [_selectButton setImage:[DGCheckmarkView imageForDefault] forState:(UIControlStateNormal)];
+        [_selectButton setImage:[DGCheckmarkView imageForSelected:DGIP_COLOR_NAVI] forState:(UIControlStateSelected)];
         [_selectButton addTarget:self action:@selector(clickSelectedButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -255,14 +258,20 @@ static NSString *const cellId = @"DGImagePreviewCollectionCell";
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.currentIndex = 0;
     [self setupUI];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    
+    //如果是查看图片,滚动currentIndex对应的cell
+    if (self.imageArr.count > 0) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+    }else{
+        self.currentIndex = 0;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -341,7 +350,7 @@ static NSString *const cellId = @"DGImagePreviewCollectionCell";
         CGFloat rightSpace = 10;
         CGFloat selectBtnW = DGIP_NAVI_BAR_HEIGHT;
         self.selectButton.frame = CGRectMake(DGIP_SCREEN_W - selectBtnW - rightSpace, DGIP_STATUS_BAR_HEIGHT, selectBtnW, selectBtnW);
-        self.selectButton.contentEdgeInsets = UIEdgeInsetsMake(9, 9, 9, 9);
+        self.selectButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         [topV addSubview:self.selectButton];
     }
 }
@@ -487,8 +496,16 @@ static NSString *const cellId = @"DGImagePreviewCollectionCell";
     self.indexLabel.text = [NSString stringWithFormat:@"%zd/%zd", self.currentIndex + 1, totalCount];
     
     //2.改变选中状态
-    ALAsset *model = [self.assetArray objectAtIndex:currentIndex];
-    self.selectButton.selected = model.isSelected;
+    if (self.isAssetPreview) {
+        ALAsset *model = [self.assetArray objectAtIndex:currentIndex];
+        self.selectButton.selected = model.isSelected;
+    }
+}
+
+#pragma mark 进预览图片
+-(void)setPreviewImages:(NSArray<UIImage *> *)imageArr defaultIndex:(NSUInteger)defaultIndex{
+    self.imageArr = imageArr;
+    self.currentIndex = imageArr.count > defaultIndex ? defaultIndex : 0;
 }
 
 @end
