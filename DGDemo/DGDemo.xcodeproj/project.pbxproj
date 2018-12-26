@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		637C4DE121D23DC2002180BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C24A7E2176CE7000F10F2C /* Assets.xcassets */; };
+		637C4DF321D23FD2002180BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 637C4DEF21D23FD2002180BD /* LaunchScreen.storyboard */; };
+		637C4DF421D23FD2002180BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 637C4DF121D23FD2002180BD /* Main.storyboard */; };
 		63C24A7A2176CE6E00F10F2C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24A792176CE6E00F10F2C /* ViewController.m */; };
-		63C24A7F2176CE7000F10F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C24A7E2176CE7000F10F2C /* Assets.xcassets */; };
 		63C24AA52176D27F00F10F2C /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24A8D2176D27E00F10F2C /* MASCompositeConstraint.m */; };
 		63C24AA62176D27F00F10F2C /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24A902176D27E00F10F2C /* MASConstraint.m */; };
 		63C24AA72176D27F00F10F2C /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24A922176D27E00F10F2C /* MASConstraintMaker.m */; };
@@ -21,15 +23,17 @@
 		63C24AAE2176D27F00F10F2C /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24AA42176D27E00F10F2C /* ViewController+MASAdditions.m */; };
 		63C24AB72176E43300F10F2C /* UIScannerDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24AB62176E43300F10F2C /* UIScannerDemoVC.m */; };
 		63C24AC32176E69300F10F2C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24ABA2176E69300F10F2C /* AppDelegate.m */; };
-		63C24AC42176E69300F10F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C24ABB2176E69300F10F2C /* LaunchScreen.storyboard */; };
-		63C24AC52176E69300F10F2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C24ABD2176E69300F10F2C /* Main.storyboard */; };
-		63C24AC62176E69300F10F2C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63C24ABF2176E69300F10F2C /* Info.plist */; };
 		63C24AC72176E69300F10F2C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24AC12176E69300F10F2C /* main.m */; };
 		63C24AD021770CD900F10F2C /* DGTouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24ACF21770CD900F10F2C /* DGTouchTableView.m */; };
 		63C24ADA2177168800F10F2C /* UIView+HitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C24AD92177168800F10F2C /* UIView+HitTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		637C4DDD21D23D6B002180BD /* NSCalendar_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCalendar_api.h; sourceTree = "<group>"; };
+		637C4DDE21D23D6B002180BD /* NSDateComponents_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDateComponents_api.h; sourceTree = "<group>"; };
+		637C4DF021D23FD2002180BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		637C4DF221D23FD2002180BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		637C4DF521D23FDB002180BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63C24A722176CE6E00F10F2C /* DGDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DGDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C24A782176CE6E00F10F2C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		63C24A792176CE6E00F10F2C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -63,9 +67,6 @@
 		63C24AB62176E43300F10F2C /* UIScannerDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIScannerDemoVC.m; sourceTree = "<group>"; };
 		63C24AB92176E69300F10F2C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		63C24ABA2176E69300F10F2C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		63C24ABC2176E69300F10F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		63C24ABE2176E69300F10F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		63C24ABF2176E69300F10F2C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63C24AC02176E69300F10F2C /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		63C24AC12176E69300F10F2C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		63C24AC22176E69300F10F2C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -91,6 +92,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		637C4DDA21D1E080002180BD /* NSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				637C4DDD21D23D6B002180BD /* NSCalendar_api.h */,
+				637C4DDE21D23D6B002180BD /* NSDateComponents_api.h */,
+			);
+			path = NSCalendar;
+			sourceTree = "<group>";
+		};
+		637C4DEE21D23FD2002180BD /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				637C4DEF21D23FD2002180BD /* LaunchScreen.storyboard */,
+				637C4DF121D23FD2002180BD /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
 		63C24A692176CE6E00F10F2C = {
 			isa = PBXGroup;
 			children = (
@@ -161,14 +180,13 @@
 		63C24AB82176E69300F10F2C /* other */ = {
 			isa = PBXGroup;
 			children = (
+				637C4DF521D23FDB002180BD /* Info.plist */,
+				637C4DEE21D23FD2002180BD /* Base.lproj */,
 				63C24AB92176E69300F10F2C /* AppDelegate.h */,
 				63C24ABA2176E69300F10F2C /* AppDelegate.m */,
 				63C24AC12176E69300F10F2C /* main.m */,
 				63C24AC02176E69300F10F2C /* Macro.h */,
 				63C24AC22176E69300F10F2C /* PrefixHeader.pch */,
-				63C24ABB2176E69300F10F2C /* LaunchScreen.storyboard */,
-				63C24ABD2176E69300F10F2C /* Main.storyboard */,
-				63C24ABF2176E69300F10F2C /* Info.plist */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -176,6 +194,7 @@
 		63C24AD1217713A300F10F2C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				637C4DDA21D1E080002180BD /* NSCalendar */,
 				63C24AD2217713C100F10F2C /* UITouch */,
 			);
 			path = API;
@@ -250,10 +269,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63C24AC52176E69300F10F2C /* Main.storyboard in Resources */,
-				63C24AC62176E69300F10F2C /* Info.plist in Resources */,
-				63C24AC42176E69300F10F2C /* LaunchScreen.storyboard in Resources */,
-				63C24A7F2176CE7000F10F2C /* Assets.xcassets in Resources */,
+				637C4DF421D23FD2002180BD /* Main.storyboard in Resources */,
+				637C4DE121D23DC2002180BD /* Assets.xcassets in Resources */,
+				637C4DF321D23FD2002180BD /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,18 +304,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		63C24ABB2176E69300F10F2C /* LaunchScreen.storyboard */ = {
+		637C4DEF21D23FD2002180BD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				63C24ABC2176E69300F10F2C /* Base */,
+				637C4DF021D23FD2002180BD /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		63C24ABD2176E69300F10F2C /* Main.storyboard */ = {
+		637C4DF121D23FD2002180BD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				63C24ABE2176E69300F10F2C /* Base */,
+				637C4DF221D23FD2002180BD /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -426,6 +444,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DGDemo/other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/DGDemo/other/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,6 +464,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DGDemo/other/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/DGDemo/other/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
