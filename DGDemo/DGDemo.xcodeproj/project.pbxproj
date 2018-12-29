@@ -29,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6311752821D71A59006C5EFE /* NSScanner_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSScanner_api.h; sourceTree = "<group>"; };
+		6311752A21D753EF006C5EFE /* NSComparisonPredicate_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSComparisonPredicate_api.h; sourceTree = "<group>"; };
+		6311752B21D757AC006C5EFE /* NSExpression_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSExpression_api.h; sourceTree = "<group>"; };
+		6311752C21D75E85006C5EFE /* NSRegularExpression_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRegularExpression_api.h; sourceTree = "<group>"; };
 		637C4DDD21D23D6B002180BD /* NSCalendar_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCalendar_api.h; sourceTree = "<group>"; };
 		637C4DDE21D23D6B002180BD /* NSDateComponents_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDateComponents_api.h; sourceTree = "<group>"; };
 		637C4DF021D23FD2002180BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,6 +96,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6311752721D71A43006C5EFE /* NSScanner */ = {
+			isa = PBXGroup;
+			children = (
+				6311752821D71A59006C5EFE /* NSScanner_api.h */,
+			);
+			path = NSScanner;
+			sourceTree = "<group>";
+		};
+		6311752921D753CF006C5EFE /* NSPredicate */ = {
+			isa = PBXGroup;
+			children = (
+				6311752A21D753EF006C5EFE /* NSComparisonPredicate_api.h */,
+				6311752B21D757AC006C5EFE /* NSExpression_api.h */,
+				6311752C21D75E85006C5EFE /* NSRegularExpression_api.h */,
+			);
+			path = NSPredicate;
+			sourceTree = "<group>";
+		};
 		637C4DDA21D1E080002180BD /* NSCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +216,8 @@
 		63C24AD1217713A300F10F2C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				6311752921D753CF006C5EFE /* NSPredicate */,
+				6311752721D71A43006C5EFE /* NSScanner */,
 				637C4DDA21D1E080002180BD /* NSCalendar */,
 				63C24AD2217713C100F10F2C /* UITouch */,
 			);

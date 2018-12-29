@@ -50,8 +50,10 @@
 
 #pragma mark - UI
 - (void)setupUI {
-    self.navigationController.view.backgroundColor = UIColor.redColor;
+    self.navigationItem.title = @"demoList";
+    self.navigationController.navigationBar.translucent = NO;
     self.view.backgroundColor = UIColor.lightGrayColor;
+    
     [self setupTableView];
 }
 
@@ -64,7 +66,7 @@
     tableV.backgroundColor = UIColor.brownColor;
     
     [self.view addSubview:tableV];
-    CGFloat topSpace = iPhoneX ? 88.0 : 64.0;
+    CGFloat topSpace = 0;
     CGFloat bottomSpace = iPhoneX ? 34.0 : 0;
     [tableV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
