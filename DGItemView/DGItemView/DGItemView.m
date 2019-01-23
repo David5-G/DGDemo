@@ -118,7 +118,7 @@ static const NSUInteger onePageItemCount = 5;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.bounces = NO;
-    scrollView.backgroundColor = self.backgroundColor;
+    scrollView.backgroundColor = UIColor.clearColor;
     [self addSubview: scrollView];
     
     //2.IndicatorView
@@ -320,7 +320,7 @@ static const NSUInteger onePageItemCount = 5;
     }
     
     //2.过滤数组越界
-    if (selectedIndex > self.buttonArr.count-1) {
+    if (selectedIndex > self.buttonArr.count-1 || selectedIndex < 0) {
         return ;
     }
     
