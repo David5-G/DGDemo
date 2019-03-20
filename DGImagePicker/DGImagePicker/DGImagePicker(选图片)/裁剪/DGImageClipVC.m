@@ -50,8 +50,12 @@
         if (needCircle) {
             self.rectangleSize = CGSizeMake(w, w);
         }else{
-            CGFloat h = (rectangleSize.height*w)/rectangleSize.width;
-            self.rectangleSize = CGSizeMake(w, h);
+            if(rectangleSize.height <=0 || rectangleSize.width <= 0){
+                self.rectangleSize = CGSizeMake(w, w);
+            }else{
+                CGFloat h = (rectangleSize.height*w)/rectangleSize.width;
+                self.rectangleSize = CGSizeMake(w, h);
+            }
         }
     }
     return self;
