@@ -19,14 +19,12 @@
 #import <objc/runtime.h>
 #import "DGIP_Header.h"
 
+#define kImageMaxW 750.0f
+
 #pragma mark - 相机CameraCell
 @interface DGCameraCell : UICollectionViewCell
 @property (nonatomic, strong) UIImageView *cameraImage;
 @end
-
-#define kImageMaxW 750.0f
-#define kScreenW       ([UIScreen mainScreen].bounds.size.width)
-#define kScreenH       ([UIScreen mainScreen].bounds.size.height)
 
 @implementation DGCameraCell
 
@@ -63,14 +61,15 @@ UITableViewDelegate>{
 
 //展示相册list
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) NSInteger assetsGroupIndex;
 @property (nonatomic, strong) ALAssetsGroup *assetsGroup;
-@property (nonatomic,assign) NSInteger assetsGroupIndex;
 
 //展示图片list
-@property (nonatomic,weak) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *assets;
+@property (nonatomic, weak) UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *assetArr;
 //选中的图片对应的index
 @property (nonatomic, strong) NSMutableArray <ALAsset *>*selectedAssetArr;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 //navi
 @property (nonatomic, strong) UIButton *naviCancelItem;
@@ -95,14 +94,29 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     return _selectedAssetArr;
 }
 
--(NSMutableArray *)assets {
-    if (!_assets) {
-        _assets = [NSMutableArray array];
+-(NSMutableArray *)assetArr {
+    if (!_assetArr) {
+        _assetArr = [NSMutableArray array];
     }
-    return _assets;
+    return _assetArr;
 }
 
-#pragma mark - life circel
+-(UIActivityIndicatorView *)activityIndicatorView {
+    if (!_activityIndicatorView) {
+        _activityIndicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _activityIndicatorView.backgroundColor = DGIP_RGBA(10, 10, 10, 0.3);
+        _activityIndicatorView.layer.cornerRadius = 5;
+        _activityIndicatorView.layer.masksToBounds = YES;
+        CGPoint centerP = self.view.center;
+        centerP.y -= DGIP_STATUS_AND_NAVI_BAR_HEIGHT;
+        _activityIndicatorView.bounds = CGRectMake(0, 0, 80, 80);
+        _activityIndicatorView.center = centerP;
+        [self.view addSubview:_activityIndicatorView];
+    }
+    return _activityIndicatorView;
+}
+
+#pragma mark - life circle
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -112,7 +126,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.assetsGroupIndex = 0;
     [self setupDimension];
     [self setupUI];
@@ -133,7 +147,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     if (assertsGroupArray.count > _assetsGroupIndex) {
         self.assetsGroup = _assertsGroupArray[_assetsGroupIndex];
     } else {
-        [self.assets removeAllObjects];
+        [self.assetArr removeAllObjects];
     }
 }
 
@@ -141,7 +155,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     _assetsGroup = assetsGroup;
     
     //1.清空
-    [self.assets removeAllObjects];
+    [self.assetArr removeAllObjects];
     
     //2.设置NaviTitle
     NSString *title = [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
@@ -158,7 +172,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
             
             if ([type isEqualToString:ALAssetTypePhoto]) {
                 result.isSelected = [self isHaveTheAsset:result];
-                [self.assets addObject:result];
+                [self.assetArr addObject:result];
             }
         }
     }];
@@ -331,7 +345,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
     bottomV.backgroundColor =[UIColor colorWithWhite:1 alpha:0.9];
     bottomV.clipsToBounds = YES;
-
+    
     //2.预览
     CGFloat showBtnH = 44;//等于非iphoneX下的bottomV的高
     CGFloat showBtnW = 60;
@@ -345,7 +359,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     [showBtn setTitleColor:DGIP_COLOR_NAVI forState:UIControlStateNormal];
     [showBtn setTitleColor:UIColor.grayColor forState:UIControlStateDisabled];
     [showBtn addTarget:self action:@selector(clickPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     //3.完成
     CGFloat sureBtnW = 68;
     CGFloat sureBtnH = 28;
@@ -392,20 +406,29 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 /** 点击完成按钮 */
 - (void)clickConfirmButton:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        //1.未选图片
-        if (self.selectedAssetArr.count < 1) {
-            return ;
-        }
+    //1.未选图片
+    if (self.selectedAssetArr.count < 1) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return ;
+    }
+    
+    //2.选了图片
+    if (self.finishHandler) {
+        DGIP_WeakS(weakSelf);
         
-        //2.选了图片
-        if (self.finishHandler) {
-            [self convertAssetsToImages:self.selectedAssetArr block:^(NSArray *imgArr) {
-                self.finishHandler(imgArr);
-            }];
-        }
+        //2.1 activityIndicator
+        [self.activityIndicatorView startAnimating];
         
-    }];
+        //2.2 处理图片
+        [self convertAssetsToImages:self.selectedAssetArr block:^(NSArray *imgArr) {
+            //2.2 处理图片
+            self.finishHandler(imgArr);
+            //2.3 停止activityIndicator
+            [weakSelf.activityIndicatorView stopAnimating];
+            //2.4 dismiss
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        }];
+    }
 }
 
 /** 点击预览按钮 */
@@ -425,8 +448,8 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
         //3.1 选中,当前selectedIndexSet没有 => 添加
         if (isSelect && ![weakSelf isHaveTheAsset:curAssert]) {
             [weakSelf.selectedAssetArr addObject:curAssert];
-        
-        //3.2 没选中,当前selectedIndexSet有 => 删除
+            
+            //3.2 没选中,当前selectedIndexSet有 => 删除
         } else if (!isSelect && [weakSelf isHaveTheAsset:curAssert]) {
             [weakSelf removeAssetWithAsset:curAssert];
         }
@@ -454,20 +477,20 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
     static NSString *cellIdentify = @"cellIdentify";
     NSInteger row = indexPath.row;
-
+    
     //1.获取cell
     DGAssetsGroupListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentify];
     if (cell == nil) {
         cell = [[DGAssetsGroupListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentify];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor =
-            cell.contentView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.65];
+        cell.contentView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.65];
     }
-
+    
     //2.获取相册
     ALAssetsGroup *assertsGroup = (ALAssetsGroup *)self.assertsGroupArray[row];
     [assertsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
-
+    
     NSString *assertName = [assertsGroup valueForProperty:ALAssetsGroupPropertyName];
     NSInteger count = [assertsGroup numberOfAssets];
     
@@ -498,7 +521,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-
+        
         if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
             [cell setSeparatorInset:UIEdgeInsetsZero];
         }
@@ -510,7 +533,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 
 #pragma mark - collectionView delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.assets.count + 1;
+    return self.assetArr.count + 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -522,11 +545,11 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
         DGCameraCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCameraCellIdentifier forIndexPath:indexPath];
         return cell;
     }
-
+    
     //2.CollectionViewCell
     DGAssetsListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
-
-    ALAsset *curAsset = [self.assets objectAtIndex: row-1];
+    
+    ALAsset *curAsset = [self.assetArr objectAtIndex: row-1];
     cell.asset = curAsset;
     cell.hasBeenSelected = curAsset.isSelected;
     cell.checkmarkHidden = self.needClip;
@@ -547,13 +570,13 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
         [self presentToCamera];
         return;
     }
-
+    
     
     //2.CollectionViewCell
     DGAssetsListCollectionViewCell *cell = (DGAssetsListCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-
-    ALAsset *curAsset = [self.assets objectAtIndex:row-1];
-
+    
+    ALAsset *curAsset = [self.assetArr objectAtIndex:row-1];
+    
     //2.1 需要裁剪
     if (self.needClip) {
         DGIP_WeakS(weakSelf);
@@ -562,7 +585,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
         }];
         return;
     }
-
+    
     //2.2 选图
     //2.2.1 取消选中
     if ([self isHaveTheAsset:curAsset]) {
@@ -570,7 +593,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
         cell.hasBeenSelected = NO;
         curAsset.isSelected = NO;
         [self updatePreviewButtonStatusAndConfirmButtonTitle];
-
+        
     }else {//2.2.2 添加选中
         
         //2.2.2.1 超选了
@@ -579,13 +602,13 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
             [DGToast showMsg:msg duration:2.0];
             return;
         }
-
+        
         //2.2.2.2 未超选
         [ALAsset getorignalImage:curAsset completion:^(UIImage *image) {
-
+            
             NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
             NSInteger length = imageData.length;
-
+            
             //2.2.2.2.1 图片过大,不处理
             if (imageData.length / (1024.0 * 1024.0) > 10.0) {
                 [[DGToast makeText:@"图片大于10M"] showWithOffset:DGIP_SCREEN_H/2 - 40];
@@ -615,7 +638,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
         if (self.needClip) {
             img = [self imageByScaledToMaxSize:img];
             [self pushToImageClipVC:img];
-
+            
         }else {//3.不裁剪
             if (self.finishHandler) {
                 //3.1 选了别的图
@@ -672,7 +695,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     CGFloat h = image.size.height;
     CGFloat targetW = targetSize.width;
     CGFloat targetH = targetSize.height;
-
+    
     //缩放比例
     CGFloat wFactor = targetW / w;
     CGFloat hFactor = targetH / h;
@@ -730,8 +753,10 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 /** 将ALAssets转换成images */
 - (void)convertAssetsToImages:(NSArray *)assets block:(void(^)(NSArray *imgArr))block {
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    dispatch_queue_t queue = dispatch_queue_create("dgip_converImageQueue", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
         
+        //1.处理图片
         NSMutableArray *mutableArr = [NSMutableArray array];
         for(ALAsset *asset in assets){
             
@@ -749,8 +774,10 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
             }
         }
         
-        //调代理方法
-        block(mutableArr);
+        //2.回到主线程 调代理方法
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(mutableArr);
+        });
     });
 }
 
@@ -813,3 +840,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 }
 
 @end
+
+
+
+
