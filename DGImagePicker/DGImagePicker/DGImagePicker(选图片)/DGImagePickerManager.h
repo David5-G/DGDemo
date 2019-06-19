@@ -24,10 +24,11 @@
 @property (nonatomic,assign) NSInteger maxImageCount;
 
 /** 代理 */
-@property(nonatomic,weak) UIViewController<DGImagePickerManagerDelegate> * delegateViewController;
+@property(nonatomic,weak) id<DGImagePickerManagerDelegate> delegate;
 
 /** 跳转显示 ImagePicker */
-- (void)showImagePicker;
+- (void)presentImagePickerByVC:(UIViewController *)presentVC;
+
 
 #pragma mark - 裁剪
 
@@ -39,5 +40,10 @@
 
 /** 矩形的size */
 @property (nonatomic,assign) CGSize rectangleSize;
+
+
+#pragma mark - block
+/** 除了用代理获取选择的图片, 也可以用block */
+@property (nonatomic, copy) void(^finishBlock)(NSArray<UIImage *> *seletedImages);
 
 @end

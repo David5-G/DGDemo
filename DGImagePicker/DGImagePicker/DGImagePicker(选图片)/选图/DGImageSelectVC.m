@@ -70,7 +70,7 @@ UITableViewDelegate>{
 @property (nonatomic,weak) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *assets;
 //选中的图片对应的index
-@property (nonatomic, strong) NSMutableSet *selectedIndexSet;
+@property (nonatomic, strong) NSMutableArray <ALAsset *>*selectedAssetArr;
 
 //navi
 @property (nonatomic, strong) UIButton *naviCancelItem;
@@ -88,11 +88,11 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 
 @implementation DGImageSelectVC
 #pragma mark - lazy load
--(NSMutableSet *)selectedIndexSet {
-    if (!_selectedIndexSet) {
-        _selectedIndexSet = [NSMutableSet set];
+-(NSMutableArray <ALAsset *>*)selectedAssetArr {
+    if (!_selectedAssetArr) {
+        _selectedAssetArr = [NSMutableArray array];
     }
-    return _selectedIndexSet;
+    return _selectedAssetArr;
 }
 
 -(NSMutableArray *)assets {
@@ -123,7 +123,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     [super viewWillAppear:animated];
     
     [self.collectionView reloadData];
-    [self.confirmButton setTitle:[NSString stringWithFormat:@"完成(%zd)", self.selectedIndexSet.count] forState:UIControlStateNormal];
+    [self.confirmButton setTitle:[NSString stringWithFormat:@"完成(%zd)", self.selectedAssetArr.count] forState:UIControlStateNormal];
 }
 
 #pragma mark - setter
@@ -177,7 +177,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
 
 #pragma mark - UI
@@ -200,6 +200,8 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 /** 设置Navi */
 -(void)setupNavi {
     
+    UIColor *naviTintColor = self.navigationController.navigationBar.tintColor;
+    
     //1.title
     UIButton *titleBtn = [[UIButton alloc]init];
     self.naviTitleItem = titleBtn;
@@ -209,7 +211,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     titleBtn.selected = NO;
     [titleBtn setImage:[UIImage imageNamed:@"dgip_navi_down"] forState:UIControlStateNormal];
     [titleBtn setImage:[UIImage imageNamed:@"dgip_navi_up"] forState:UIControlStateSelected];
-    [titleBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+    [titleBtn setTitleColor:naviTintColor forState:UIControlStateNormal];
     NSString *title = [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
     [self updataNaviTitle:title];
     
@@ -219,10 +221,23 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     self.naviCancelItem = [UIButton buttonWithType:(UIButtonTypeCustom)];
     self.naviCancelItem.frame = CGRectMake(0, 0, 45, 30);
     [self.naviCancelItem setTitle:@"取消" forState:(UIControlStateNormal)];
+    [self.naviCancelItem setTitleColor:naviTintColor forState:UIControlStateNormal];
     [self.naviCancelItem addTarget:self action:@selector(clickNaviCancelItem:) forControlEvents:(UIControlEventTouchUpInside)];
+    self.naviCancelItem.hidden = YES;
     
     UIBarButtonItem *topCancelItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviCancelItem];
     self.navigationItem.rightBarButtonItem = topCancelItem;
+    
+    //3.back
+    UIButton *backBtn = [[UIButton alloc]init];
+    [backBtn setImage:[UIImage imageNamed:@"dgip_navi_back_black"] forState:UIControlStateNormal];
+    backBtn.frame = CGRectMake(0, 0, 30, 30);
+    backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [backBtn addTarget:self action:@selector(clickNaviCancelItem:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
+    
 }
 
 /** 更新naviTitle */
@@ -243,15 +258,13 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     //3.重新设置navigationItem.titleView
     self.navigationItem.titleView = nil;
     self.navigationItem.titleView = self.naviTitleItem;
-    
-    
 }
 
 
 /** 更新 previewButton状态,confirmButton的title */
 -(void)updatePreviewButtonStatusAndConfirmButtonTitle {
-    [self.confirmButton setTitle:[NSString stringWithFormat:@"完成(%zd)", self.selectedIndexSet.count] forState:UIControlStateNormal];
-    self.previewButton.enabled = self.selectedIndexSet.count;
+    [self.confirmButton setTitle:[NSString stringWithFormat:@"完成(%zd)", self.selectedAssetArr.count] forState:UIControlStateNormal];
+    self.previewButton.enabled = self.selectedAssetArr.count;
 }
 
 /** 设置CollectionView */
@@ -369,22 +382,30 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     }
     
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        if (self.finishHandler) {
+            self.finishHandler(nil);
+        }
     }];
-    
-    if (self.finishHandler) {
-        self.finishHandler(YES, NO, nil);
-    }
 }
 
 #pragma mark bottomView
 /** 点击完成按钮 */
 - (void)clickConfirmButton:(id)sender {
     
-    if (self.finishHandler) {
-        self.finishHandler(NO, NO, [self.selectedIndexSet allObjects]);
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        //1.未选图片
+        if (self.selectedAssetArr.count < 1) {
+            return ;
+        }
+        
+        //2.选了图片
+        if (self.finishHandler) {
+            [self convertAssetsToImages:self.selectedAssetArr block:^(NSArray *imgArr) {
+                self.finishHandler(imgArr);
+            }];
+        }
+        
+    }];
 }
 
 /** 点击预览按钮 */
@@ -395,7 +416,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
     //2.设置属性
     previewVC.isAssetPreview = YES;
-    previewVC.assetArray = [self.selectedIndexSet allObjects];
+    previewVC.assetArray = self.selectedAssetArr;
     
     //3.设置选中状态block
     //previewVC中asset选状态切换时,调整selectedVC的asset选中
@@ -403,7 +424,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     previewVC.selectBlock = ^(ALAsset *curAssert, BOOL isSelect) {
         //3.1 选中,当前selectedIndexSet没有 => 添加
         if (isSelect && ![weakSelf isHaveTheAsset:curAssert]) {
-            [weakSelf.selectedIndexSet addObject:curAssert];
+            [weakSelf.selectedAssetArr addObject:curAssert];
         
         //3.2 没选中,当前selectedIndexSet有 => 删除
         } else if (!isSelect && [weakSelf isHaveTheAsset:curAssert]) {
@@ -518,10 +539,16 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     
     //1.相机cell
     if (row == 0) {
+        if(self.selectedAssetArr.count >= self.maxCount){
+            NSString *msg = [NSString stringWithFormat:@"您最多只能选择%zd张图片", self.maxCount];
+            [DGToast showMsg:msg duration:2.0];
+            return;
+        }
         [self presentToCamera];
         return;
     }
 
+    
     //2.CollectionViewCell
     DGAssetsListCollectionViewCell *cell = (DGAssetsListCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
 
@@ -547,7 +574,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     }else {//2.2.2 添加选中
         
         //2.2.2.1 超选了
-        if (self.selectedIndexSet.count >= self.maxCount) {
+        if (self.selectedAssetArr.count >= self.maxCount) {
             NSString *msg = [NSString stringWithFormat:@"您最多只能选择%zd张图片", self.maxCount];
             [DGToast showMsg:msg duration:2.0];
             return;
@@ -560,11 +587,11 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
             NSInteger length = imageData.length;
 
             //2.2.2.2.1 图片过大,不处理
-            if (imageData.length / (1024.0 * 1024.0) > 5.0) {
-                [[DGToast makeText:@"图片大于5M"] showWithOffset:DGIP_SCREEN_H/2 - 40];
+            if (imageData.length / (1024.0 * 1024.0) > 10.0) {
+                [[DGToast makeText:@"图片大于10M"] showWithOffset:DGIP_SCREEN_H/2 - 40];
                 
             } else {//2.2.2.2.2 处理选图
-                [self.selectedIndexSet addObject:curAsset];
+                [self.selectedAssetArr addObject:curAsset];
                 cell.hasBeenSelected = YES;
                 curAsset.isSelected = YES;
                 [self updatePreviewButtonStatusAndConfirmButtonTitle];
@@ -576,31 +603,33 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    //1.拍照,使用图片
+    //退出picker后操作
     [picker dismissViewControllerAnimated:YES completion:^() {
         
-        UIImage *selectImage = [info valueForKey:@"UIImagePickerControllerOriginalImage"];
-
-        //1.裁剪
+        //1.保存图片
+        UIImage *img = [info valueForKey:@"UIImagePickerControllerOriginalImage"];
+        if(!img){ return ; }//过滤空
+        UIImageWriteToSavedPhotosAlbum(img, self, nil, nil);
+        
+        //2.裁剪
         if (self.needClip) {
-            selectImage = [self imageByScaledToMaxSize:selectImage];
-            [self pushToImageClipVC:selectImage];
+            img = [self imageByScaledToMaxSize:img];
+            [self pushToImageClipVC:img];
 
-        } else {
-            UIImage *tempImage = nil;
-            if (selectImage.imageOrientation != UIImageOrientationUp) {
-                UIGraphicsBeginImageContext(selectImage.size);
-                [selectImage drawInRect:CGRectMake(0, 0, selectImage.size.width, selectImage.size.height)];
-                tempImage = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
-                
-            } else {
-                tempImage = selectImage;
-            }
-
+        }else {//3.不裁剪
             if (self.finishHandler) {
-                self.finishHandler(NO, YES, @[tempImage]);
+                //3.1 选了别的图
+                if(self.selectedAssetArr.count > 0){
+                    [self convertAssetsToImages:self.selectedAssetArr block:^(NSArray *imgArr) {
+                        NSMutableArray *mArr = [NSMutableArray arrayWithArray:imgArr];
+                        [mArr addObject:img];
+                        self.finishHandler(mArr);
+                    }];
+                }else{//3.2 单拍照
+                    self.finishHandler(@[img]);
+                }
             }
+            //4.dismiss出self
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
@@ -672,9 +701,9 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
     return newImage;
 }
 
-#pragma mark - selected操作
+#pragma mark - ALAsset操作
 - (BOOL)isHaveTheAsset:(ALAsset *)asset {
-    for (ALAsset *theAsset in self.selectedIndexSet) {
+    for (ALAsset *theAsset in self.selectedAssetArr) {
         if ([asset.defaultRepresentation.url isEqual:theAsset.defaultRepresentation.url]) {
             return YES;
         }
@@ -686,16 +715,43 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
 - (void)removeAssetWithAsset:(ALAsset *)asset {
     
     ALAsset *theAsset;
-    for (ALAsset *curAsset in self.selectedIndexSet) {
+    for (ALAsset *curAsset in self.selectedAssetArr) {
         if ([curAsset.defaultRepresentation.url isEqual:asset.defaultRepresentation.url]) {
             theAsset = curAsset;
             break;
         }
     }
     
-    if (theAsset) {
-        [self.selectedIndexSet removeObject:theAsset];
+    if (theAsset && [self.selectedAssetArr containsObject:theAsset]) {
+        [self.selectedAssetArr removeObject:theAsset];
     }
+}
+
+/** 将ALAssets转换成images */
+- (void)convertAssetsToImages:(NSArray *)assets block:(void(^)(NSArray *imgArr))block {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        NSMutableArray *mutableArr = [NSMutableArray array];
+        for(ALAsset *asset in assets){
+            
+            UIImage *image;
+            if ([asset defaultRepresentation]) {
+                //这里把图片压缩成fullScreenImage分辨率上传，可以修改为fullResolutionImage使用原图上传
+                image = [UIImage imageWithCGImage:[asset.defaultRepresentation fullScreenImage] scale:[asset.defaultRepresentation scale] orientation:UIImageOrientationUp];
+            } else {
+                image = [UIImage imageWithCGImage:[asset thumbnail]];
+            }
+            
+            //添加图片
+            if (image) {
+                [mutableArr addObject:image];
+            }
+        }
+        
+        //调代理方法
+        block(mutableArr);
+    });
 }
 
 
@@ -745,7 +801,7 @@ static NSString *const kCameraCellIdentifier = @"CameraCellId";
         
         //2.1处理图片
         if (weakSelf.finishHandler) {
-            weakSelf.finishHandler(NO, YES, image ? [NSArray arrayWithObject:image] : nil);
+            weakSelf.finishHandler(image ? @[image] : nil);
         }
         
         //2.3 退出self
