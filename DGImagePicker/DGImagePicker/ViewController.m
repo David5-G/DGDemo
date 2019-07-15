@@ -30,7 +30,7 @@
 -(DGImagePickerManager *)imagePickerMgr {
     if (!_imagePickerMgr) {
         _imagePickerMgr = [[DGImagePickerManager alloc]initWithMaxImageCount:5];
-        _imagePickerMgr.delegateViewController = self;
+        _imagePickerMgr.delegate = self;
     }
     return _imagePickerMgr;
 }
@@ -40,7 +40,7 @@
     self.imagePickerMgr.needRectangle = YES;
     self.imagePickerMgr.rectangleSize = CGSizeMake(120, 60);
     self.imagePickerMgr.needCircle = NO;
-    [self.imagePickerMgr showImagePicker];
+    [self.imagePickerMgr presentImagePickerByVC:self];
 }
 
 
@@ -48,7 +48,7 @@
     self.clickBtnIndex = 2;
     self.imagePickerMgr.needRectangle = NO;
     self.imagePickerMgr.needCircle = YES;
-    [self.imagePickerMgr showImagePicker];
+    [self.imagePickerMgr presentImagePickerByVC:self];
 }
 
 
@@ -57,7 +57,7 @@
     self.imagePickerMgr.needRectangle = NO;
     self.imagePickerMgr.needCircle = NO;
     self.imagePickerMgr.maxImageCount = 2;
-    [self.imagePickerMgr showImagePicker];
+    [self.imagePickerMgr presentImagePickerByVC:self];
 }
 
 

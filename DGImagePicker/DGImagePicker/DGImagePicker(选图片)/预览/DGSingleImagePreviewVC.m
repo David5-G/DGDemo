@@ -165,7 +165,7 @@ static const float minZoom = 0.5;
     [self.scrollView addSubview:self.imageView];
 //    self.scrollView.contentSize = self.imageView.size;
     CGSize size = self.scrollView.contentSize;
-    NSLog(@"w = %f, h = %f", size.width, size.height);
+//    NSLog(@"w = %f, h = %f", size.width, size.height);
 
     //2.添加手势
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapImageView:)];

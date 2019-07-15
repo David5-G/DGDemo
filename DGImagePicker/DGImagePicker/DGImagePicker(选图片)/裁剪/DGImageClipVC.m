@@ -171,12 +171,13 @@
 - (void)maskViewSetMask {
     
     //1.path
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.maskView.frame] ;
-    
     CGFloat radius = self.needCircle ? self.clipFrame.size.width/2.0 : 0;
-    [path appendPath: [[UIBezierPath bezierPathWithRoundedRect:self.clipFrame cornerRadius:radius] bezierPathByReversingPath]];
+    UIBezierPath *roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:self.clipFrame cornerRadius:radius];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.maskView.frame];
+    //bezierPathByReversingPath方法 获得与原path相同形状,但不同方向的新path对象
+    [path appendPath: [roundedRectPath bezierPathByReversingPath]];
     
-    //2.layer
+    //2.layer 
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
     maskLayer.frame = self.maskView.frame;
     maskLayer.path = path.CGPath;

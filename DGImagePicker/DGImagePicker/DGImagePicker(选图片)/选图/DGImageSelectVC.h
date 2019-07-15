@@ -17,11 +17,9 @@
 
 
 /** 图片选择完成block
- *  @param isCanceled  是否是 取消
- *  @param isCamera    是否是 相机
- *  @param assets      选中的 数据
+ *  @param imgArr      选中的 图片
  */
-@property (nonatomic,copy) void(^finishHandler)(BOOL isCanceled,BOOL isCamera,NSArray *assets);
+@property (nonatomic,copy) void(^finishHandler)(NSArray *imgArr);
 
 /** 最多选择几张图 */
 @property (nonatomic,assign) NSInteger maxCount ;

@@ -15,6 +15,8 @@
 
 @interface DGImagePickerManager()
 @property (nonatomic,strong) ALAssetsLibrary * assetsLibrary;
+/** present推出选图片VC的VC */
+@property (nonatomic,strong) UIViewController *presentVC;
 
 @end
 
@@ -49,12 +51,15 @@
 - (void)callDelegateWithImageArray:(NSArray *)imageArray {
     //在主线程 传图片
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegateViewController manager:self didSlectedImages:imageArray];
+        [self.delegate manager:self didSlectedImages:imageArray];
+        if (self.finishBlock) {
+            self.finishBlock(imageArray);
+        }
     });
 }
 
 #pragma mark - jump
-- (void)showImagePicker{
+- (void)presentImagePickerByVC:(UIViewController *)presentVC{
     
     //1.授权
     ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
@@ -75,13 +80,13 @@
         [self loadAssetsGroup:^(NSArray *assetsGroups) {
             
             //4.跳转
-            [weakSelf presentToSelectedImageVC:assetsGroups];
+            [weakSelf presentToSelectedImageVC:assetsGroups byVC:presentVC];
         }];
     }
 }
 
 
--(void)presentToSelectedImageVC:(NSArray *)assetsGroups {
+-(void)presentToSelectedImageVC:(NSArray *)assetsGroups byVC:(UIViewController *)presentVC{
     
     DGIP_WeakS(weakSelf);
     //1.创建
@@ -100,62 +105,30 @@
     imageSelectedVC.assertsGroupArray = assetsGroups;
     
     //3.设置block
-    imageSelectedVC.finishHandler = ^(BOOL isCanceled, BOOL isCamera, NSArray *assets) {
+    imageSelectedVC.finishHandler = ^(NSArray *imgArr) {
         
-        if(!isCanceled){
-            //1.相机, assets是包含一个image的数组
-            if (isCamera) {
-                [weakSelf callDelegateWithImageArray:[assets copy]];
-            }else{//2.相册, assets是包含ALAsset的数组
-                [weakSelf dealWithAssets:assets];
-            }
+        if(imgArr && imgArr.count > 0){
+            [weakSelf callDelegateWithImageArray:imgArr];
         }
     };
     
     //4.跳转
     UINavigationController *naviC = [[UINavigationController alloc] initWithRootViewController:imageSelectedVC];
     //设置导航,
-    [naviC.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:UIColor.whiteColor}];
-    
-    naviC.navigationBar.tintColor = UIColor.whiteColor;
-    naviC.navigationBar.barTintColor = DGIP_COLOR_NAVI;
+//    [naviC.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:UIColor.whiteColor}];
+//
+    naviC.navigationBar.tintColor = UIColor.blackColor;
+//    naviC.navigationBar.barTintColor = DGIP_COLOR_NAVI;
     naviC.navigationBar.translucent = NO;//会让滚动视图,下移
     //只有设为UIBarStyleBlack时,子VC的preferredStatusBarStyle才会被调用
-    naviC.navigationBar.barStyle = UIBarStyleBlack;
+    //naviC.navigationBar.barStyle = UIBarStyleBlack;
     //naviC.modalPresentationCapturesStatusBarAppearance = YES;
     
-    [weakSelf.delegateViewController presentViewController:naviC animated:YES completion:NULL];
+    self.presentVC = presentVC;
+    [presentVC presentViewController:naviC animated:YES completion:NULL];
 }
 
-#pragma mark - 选图片相关
-/** 将ALAsset转换成image */
-- (void)dealWithAssets:(NSArray *)assets{
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        
-        NSMutableArray *mutableArr = [NSMutableArray array];
-        for(ALAsset *asset in assets){
-            
-            UIImage *image;
-            if ([asset defaultRepresentation]) {
-                //这里把图片压缩成fullScreenImage分辨率上传，可以修改为fullResolutionImage使用原图上传
-                image = [UIImage imageWithCGImage:[asset.defaultRepresentation fullScreenImage] scale:[asset.defaultRepresentation scale] orientation:UIImageOrientationUp];
-            } else {
-                image = [UIImage imageWithCGImage:[asset thumbnail]];
-                image = [self compressImage:image];
-            }
-            
-            //添加图片
-            if (image) {
-                [mutableArr addObject:image];
-            }
-        }
-        
-        //调代理方法
-        [self callDelegateWithImageArray:[mutableArr copy]];
-    });
-}
-
+#pragma mark - 相册相关
 /** 获取相册数据 */
 - (void)loadAssetsGroup:(void (^)(NSArray *assetsGroups))completion{
     
@@ -230,20 +203,6 @@
     }
     
     return [sortedAssetsGroups copy];
-}
-
-
-/** 压缩图片 */
-- (UIImage *)compressImage:(UIImage *)image{
-    
-    UIImage *resultImage  = image;
-    if (resultImage.CGImage) {
-        NSData *tempImageData = UIImageJPEGRepresentation(resultImage,0.9);
-        if (tempImageData) {
-            resultImage = [UIImage imageWithData:tempImageData];
-        }
-    }
-    return resultImage;
 }
 
 @end
