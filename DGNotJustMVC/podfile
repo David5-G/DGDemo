@@ -1,0 +1,9 @@
+
+
+target 'DGNotJustMVC' do
+
+pod 'MJExtension'
+pod 'Masonry', '~> 1.1.0'
+pod 'ReactiveObjC'
+
+end
