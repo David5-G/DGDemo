@@ -12,7 +12,7 @@
 @implementation UIView (HitTest)
 
 +(void)load {
-    //[self exchangeHitTestMethod];
+    [self exchangeHitTestMethod];
 }
 
 
