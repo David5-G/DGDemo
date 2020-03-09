@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic,strong) DGDataSource *ds;
 @property (nonatomic,strong) MvvmViewModel *viewModel;
+
 @end
 
 @implementation MvvmVC
@@ -48,6 +49,8 @@
 }
 
 
+
+
 #pragma mark - UI
 -(void)setupUI {
     
@@ -69,7 +72,8 @@
     //2.创建DGDataSource实例对象
     self.ds = [[DGDataSource alloc]initWithIdentifier:kCellReuseId configBlock:^(MvvmTableViewCell *cell, DGModel *model, NSIndexPath * _Nonnull indexPath) {
         
-        cell.nameLabel.text = model.name;
+        //cell.nameLabel.text = model.name;
+        cell.nameLabel.text = [weakSelf.viewModel nameStrForIndexPath:indexPath];
         cell.num = [model.num intValue];
         cell.delegate = weakSelf;
         

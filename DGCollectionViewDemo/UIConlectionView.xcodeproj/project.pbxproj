@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		255CACA21BDF114E0092643A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 255CACA11BDF114E0092643A /* main.m */; };
+		255CACA51BDF114E0092643A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 255CACA41BDF114E0092643A /* AppDelegate.m */; };
+		255CACA81BDF114E0092643A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255CACA71BDF114E0092643A /* ViewController.m */; };
+		255CACAB1BDF114E0092643A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255CACA91BDF114E0092643A /* Main.storyboard */; };
+		255CACAD1BDF114E0092643A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255CACAC1BDF114E0092643A /* Assets.xcassets */; };
+		255CACB01BDF114E0092643A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255CACAE1BDF114E0092643A /* LaunchScreen.storyboard */; };
+		255CACB91BDF7CD10092643A /* MyLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 255CACB81BDF7CD10092643A /* MyLayout.m */; };
+		DC7391032412643900D9631C /* MyWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7391022412643900D9631C /* MyWaterFlowLayout.m */; };
+		DC7391072412662E00D9631C /* MyWaterfallVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7391062412662E00D9631C /* MyWaterfallVC.m */; };
+		DC73910B241266F400D9631C /* My3DVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DC73910A241266F400D9631C /* My3DVC.m */; };
+		DC73910F24126A8A00D9631C /* MyCircleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DC73910E24126A8A00D9631C /* MyCircleVC.m */; };
+		DC73911224126AA800D9631C /* MyCircleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DC73911124126AA800D9631C /* MyCircleLayout.m */; };
+		DC73911624126C7200D9631C /* My3dBallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DC73911524126C7200D9631C /* My3dBallLayout.m */; };
+		DC73911924126C9E00D9631C /* My3dBallVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DC73911824126C9E00D9631C /* My3dBallVC.m */; };
+		DC73911D24126EB200D9631C /* MyWaterFlowLayoutB.m in Sources */ = {isa = PBXBuildFile; fileRef = DC73911C24126EB200D9631C /* MyWaterFlowLayoutB.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		255CAC9D1BDF114E0092643A /* UIConlectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIConlectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		255CACA11BDF114E0092643A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		255CACA31BDF114E0092643A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		255CACA41BDF114E0092643A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		255CACA61BDF114E0092643A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		255CACA71BDF114E0092643A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		255CACAA1BDF114E0092643A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		255CACAC1BDF114E0092643A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		255CACAF1BDF114E0092643A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		255CACB11BDF114E0092643A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		255CACB71BDF7CD10092643A /* MyLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLayout.h; sourceTree = "<group>"; };
+		255CACB81BDF7CD10092643A /* MyLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLayout.m; sourceTree = "<group>"; };
+		DC7391012412643900D9631C /* MyWaterFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWaterFlowLayout.h; sourceTree = "<group>"; };
+		DC7391022412643900D9631C /* MyWaterFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWaterFlowLayout.m; sourceTree = "<group>"; };
+		DC7391052412662E00D9631C /* MyWaterfallVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWaterfallVC.h; sourceTree = "<group>"; };
+		DC7391062412662E00D9631C /* MyWaterfallVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWaterfallVC.m; sourceTree = "<group>"; };
+		DC739109241266F400D9631C /* My3DVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = My3DVC.h; sourceTree = "<group>"; };
+		DC73910A241266F400D9631C /* My3DVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = My3DVC.m; sourceTree = "<group>"; };
+		DC73910D24126A8A00D9631C /* MyCircleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCircleVC.h; sourceTree = "<group>"; };
+		DC73910E24126A8A00D9631C /* MyCircleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCircleVC.m; sourceTree = "<group>"; };
+		DC73911024126AA800D9631C /* MyCircleLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCircleLayout.h; sourceTree = "<group>"; };
+		DC73911124126AA800D9631C /* MyCircleLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCircleLayout.m; sourceTree = "<group>"; };
+		DC73911424126C7200D9631C /* My3dBallLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = My3dBallLayout.h; sourceTree = "<group>"; };
+		DC73911524126C7200D9631C /* My3dBallLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = My3dBallLayout.m; sourceTree = "<group>"; };
+		DC73911724126C9E00D9631C /* My3dBallVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = My3dBallVC.h; sourceTree = "<group>"; };
+		DC73911824126C9E00D9631C /* My3dBallVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = My3dBallVC.m; sourceTree = "<group>"; };
+		DC73911B24126EB200D9631C /* MyWaterFlowLayoutB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWaterFlowLayoutB.h; sourceTree = "<group>"; };
+		DC73911C24126EB200D9631C /* MyWaterFlowLayoutB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWaterFlowLayoutB.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		255CAC9A1BDF114E0092643A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		255CAC941BDF114E0092643A = {
+			isa = PBXGroup;
+			children = (
+				255CAC9F1BDF114E0092643A /* UIConlectionView */,
+				255CAC9E1BDF114E0092643A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		255CAC9E1BDF114E0092643A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				255CAC9D1BDF114E0092643A /* UIConlectionView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		255CAC9F1BDF114E0092643A /* UIConlectionView */ = {
+			isa = PBXGroup;
+			children = (
+				DC73911A24126E8400D9631C /* 瀑布流2 */,
+				DC73911324126C4A00D9631C /* 3D球形 */,
+				DC73910C24126A6E00D9631C /* 环形 */,
+				DC739108241266D600D9631C /* 3D */,
+				DC739104241265D200D9631C /* 瀑布流 */,
+				255CACA31BDF114E0092643A /* AppDelegate.h */,
+				255CACA41BDF114E0092643A /* AppDelegate.m */,
+				255CACA61BDF114E0092643A /* ViewController.h */,
+				255CACA71BDF114E0092643A /* ViewController.m */,
+				255CACA91BDF114E0092643A /* Main.storyboard */,
+				255CACAC1BDF114E0092643A /* Assets.xcassets */,
+				255CACAE1BDF114E0092643A /* LaunchScreen.storyboard */,
+				255CACB11BDF114E0092643A /* Info.plist */,
+				255CACA01BDF114E0092643A /* Supporting Files */,
+			);
+			path = UIConlectionView;
+			sourceTree = "<group>";
+		};
+		255CACA01BDF114E0092643A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				255CACA11BDF114E0092643A /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DC739104241265D200D9631C /* 瀑布流 */ = {
+			isa = PBXGroup;
+			children = (
+				DC7391052412662E00D9631C /* MyWaterfallVC.h */,
+				DC7391062412662E00D9631C /* MyWaterfallVC.m */,
+				DC7391012412643900D9631C /* MyWaterFlowLayout.h */,
+				DC7391022412643900D9631C /* MyWaterFlowLayout.m */,
+			);
+			name = "瀑布流";
+			sourceTree = "<group>";
+		};
+		DC739108241266D600D9631C /* 3D */ = {
+			isa = PBXGroup;
+			children = (
+				DC739109241266F400D9631C /* My3DVC.h */,
+				DC73910A241266F400D9631C /* My3DVC.m */,
+				255CACB71BDF7CD10092643A /* MyLayout.h */,
+				255CACB81BDF7CD10092643A /* MyLayout.m */,
+			);
+			name = 3D;
+			sourceTree = "<group>";
+		};
+		DC73910C24126A6E00D9631C /* 环形 */ = {
+			isa = PBXGroup;
+			children = (
+				DC73910D24126A8A00D9631C /* MyCircleVC.h */,
+				DC73910E24126A8A00D9631C /* MyCircleVC.m */,
+				DC73911024126AA800D9631C /* MyCircleLayout.h */,
+				DC73911124126AA800D9631C /* MyCircleLayout.m */,
+			);
+			name = "环形";
+			sourceTree = "<group>";
+		};
+		DC73911324126C4A00D9631C /* 3D球形 */ = {
+			isa = PBXGroup;
+			children = (
+				DC73911724126C9E00D9631C /* My3dBallVC.h */,
+				DC73911824126C9E00D9631C /* My3dBallVC.m */,
+				DC73911424126C7200D9631C /* My3dBallLayout.h */,
+				DC73911524126C7200D9631C /* My3dBallLayout.m */,
+			);
+			name = "3D球形";
+			sourceTree = "<group>";
+		};
+		DC73911A24126E8400D9631C /* 瀑布流2 */ = {
+			isa = PBXGroup;
+			children = (
+				DC73911B24126EB200D9631C /* MyWaterFlowLayoutB.h */,
+				DC73911C24126EB200D9631C /* MyWaterFlowLayoutB.m */,
+			);
+			name = "瀑布流2";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		255CAC9C1BDF114E0092643A /* UIConlectionView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 255CACB41BDF114E0092643A /* Build configuration list for PBXNativeTarget "UIConlectionView" */;
+			buildPhases = (
+				255CAC991BDF114E0092643A /* Sources */,
+				255CAC9A1BDF114E0092643A /* Frameworks */,
+				255CAC9B1BDF114E0092643A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UIConlectionView;
+			productName = UIConlectionView;
+			productReference = 255CAC9D1BDF114E0092643A /* UIConlectionView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		255CAC951BDF114E0092643A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = jaki;
+				TargetAttributes = {
+					255CAC9C1BDF114E0092643A = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 8TYUS3TG9Q;
+					};
+				};
+			};
+			buildConfigurationList = 255CAC981BDF114E0092643A /* Build configuration list for PBXProject "UIConlectionView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = 255CAC941BDF114E0092643A;
+			productRefGroup = 255CAC9E1BDF114E0092643A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				255CAC9C1BDF114E0092643A /* UIConlectionView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		255CAC9B1BDF114E0092643A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				255CACB01BDF114E0092643A /* LaunchScreen.storyboard in Resources */,
+				255CACAD1BDF114E0092643A /* Assets.xcassets in Resources */,
+				255CACAB1BDF114E0092643A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		255CAC991BDF114E0092643A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC73910F24126A8A00D9631C /* MyCircleVC.m in Sources */,
+				DC73911224126AA800D9631C /* MyCircleLayout.m in Sources */,
+				255CACA81BDF114E0092643A /* ViewController.m in Sources */,
+				DC73911D24126EB200D9631C /* MyWaterFlowLayoutB.m in Sources */,
+				255CACB91BDF7CD10092643A /* MyLayout.m in Sources */,
+				255CACA51BDF114E0092643A /* AppDelegate.m in Sources */,
+				DC7391072412662E00D9631C /* MyWaterfallVC.m in Sources */,
+				DC7391032412643900D9631C /* MyWaterFlowLayout.m in Sources */,
+				DC73911924126C9E00D9631C /* My3dBallVC.m in Sources */,
+				DC73911624126C7200D9631C /* My3dBallLayout.m in Sources */,
+				255CACA21BDF114E0092643A /* main.m in Sources */,
+				DC73910B241266F400D9631C /* My3DVC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		255CACA91BDF114E0092643A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				255CACAA1BDF114E0092643A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		255CACAE1BDF114E0092643A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				255CACAF1BDF114E0092643A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		255CACB21BDF114E0092643A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		255CACB31BDF114E0092643A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		255CACB51BDF114E0092643A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8TYUS3TG9Q;
+				INFOPLIST_FILE = UIConlectionView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = companyTestwei.UIConlectionView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		255CACB61BDF114E0092643A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = UIConlectionView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = companyTestwei.UIConlectionView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		255CAC981BDF114E0092643A /* Build configuration list for PBXProject "UIConlectionView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				255CACB21BDF114E0092643A /* Debug */,
+				255CACB31BDF114E0092643A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		255CACB41BDF114E0092643A /* Build configuration list for PBXNativeTarget "UIConlectionView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				255CACB51BDF114E0092643A /* Debug */,
+				255CACB61BDF114E0092643A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 255CAC951BDF114E0092643A /* Project object */;
+}

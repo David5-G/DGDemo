@@ -78,7 +78,7 @@
     if ([nameStr containsString:@"魔抗"]) {
         return nameStr;
     }else {
-        return [nameStr stringByAppendingString:@"*"];
+        return [nameStr stringByAppendingString:@"**"];
     }
     
 }
