@@ -11,6 +11,7 @@
 
 @implementation UIView (HitTest)
 
+//load
 +(void)load {
     [self exchangeHitTestMethod];
 }
