@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 @implementation UIView (HitTest)
-
+//load123
 //load
 +(void)load {
     [self exchangeHitTestMethod];
