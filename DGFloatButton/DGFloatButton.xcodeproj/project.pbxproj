@@ -16,6 +16,7 @@
 		63786EC021C9E14F00A55CDA /* DGFloatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63786EBF21C9E14F00A55CDA /* DGFloatButton.m */; };
 		63786EC321C9E9AE00A55CDA /* dgfb_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 63786EC121C9E9AE00A55CDA /* dgfb_icon.png */; };
 		63786EC721C9FE7B00A55CDA /* UIViewController+DGAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 63786EC521C9FE7A00A55CDA /* UIViewController+DGAlert.m */; };
+		DC95C8E32428740A0097F7F9 /* test1.m in Sources */ = {isa = PBXBuildFile; fileRef = DC95C8E22428740A0097F7F9 /* test1.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		63786EC121C9E9AE00A55CDA /* dgfb_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dgfb_icon.png; sourceTree = "<group>"; };
 		63786EC521C9FE7A00A55CDA /* UIViewController+DGAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DGAlert.m"; sourceTree = "<group>"; };
 		63786EC621C9FE7B00A55CDA /* UIViewController+DGAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DGAlert.h"; sourceTree = "<group>"; };
+		DC95C8E12428740A0097F7F9 /* test1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test1.h; sourceTree = "<group>"; };
+		DC95C8E22428740A0097F7F9 /* test1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test1.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,8 @@
 				63786EC521C9FE7A00A55CDA /* UIViewController+DGAlert.m */,
 				63786EAB21C9E12700A55CDA /* ViewController.h */,
 				63786EAC21C9E12700A55CDA /* ViewController.m */,
+				DC95C8E12428740A0097F7F9 /* test1.h */,
+				DC95C8E22428740A0097F7F9 /* test1.m */,
 				63786EAE21C9E12700A55CDA /* Main.storyboard */,
 				63786EB121C9E12D00A55CDA /* Assets.xcassets */,
 				63786EB321C9E12D00A55CDA /* LaunchScreen.storyboard */,
@@ -158,6 +163,7 @@
 				63786EC021C9E14F00A55CDA /* DGFloatButton.m in Sources */,
 				63786EAD21C9E12700A55CDA /* ViewController.m in Sources */,
 				63786EB821C9E12E00A55CDA /* main.m in Sources */,
+				DC95C8E32428740A0097F7F9 /* test1.m in Sources */,
 				63786EAA21C9E12700A55CDA /* AppDelegate.m in Sources */,
 				63786EC721C9FE7B00A55CDA /* UIViewController+DGAlert.m in Sources */,
 			);
@@ -303,6 +309,8 @@
 				DEVELOPMENT_TEAM = ZHJX48G4CA;
 				INFOPLIST_FILE = DGFloatButton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_GENERATE_MAP_FILE = YES;
+				LD_MAP_FILE_PATH = /Users/David.G/Desktop/linkMap;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -321,6 +329,8 @@
 				DEVELOPMENT_TEAM = ZHJX48G4CA;
 				INFOPLIST_FILE = DGFloatButton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_GENERATE_MAP_FILE = YES;
+				LD_MAP_FILE_PATH = /Users/David.G/Desktop/linkMap;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

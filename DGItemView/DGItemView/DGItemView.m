@@ -226,11 +226,13 @@ static const NSUInteger onePageItemCount = 5;
     }
     
     //2.调代理方法
-    _selectedIndex = [self.buttonArr indexOfObject:sender];
-    BOOL effective = [self.delegate itemView:self didSelectedAtIndex:_selectedIndex];
+    NSInteger clickSelectedIndex = [self.buttonArr indexOfObject:sender];
+    BOOL effective = [self.delegate itemView:self didSelectedAtIndex:clickSelectedIndex];
     if(!effective){
         return ;
     }
+    //有效才能改变_selectedIndex
+    _selectedIndex = clickSelectedIndex;
     
     //3.改变选中状态
     self.currentSelectedButton.selected = NO;

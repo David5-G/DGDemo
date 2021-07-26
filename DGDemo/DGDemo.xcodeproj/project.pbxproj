@@ -145,8 +145,8 @@
 		6326C76D23717D1B0017D61F /* HitTest */ = {
 			isa = PBXGroup;
 			children = (
-				6326C76E23717D1B0017D61F /* UIView+HitTest.m */,
 				6326C76F23717D1B0017D61F /* UIView+HitTest.h */,
+				6326C76E23717D1B0017D61F /* UIView+HitTest.m */,
 			);
 			path = HitTest;
 			sourceTree = "<group>";

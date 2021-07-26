@@ -116,5 +116,6 @@
 -(BOOL)itemView:(DGItemView *)itemView didSelectedAtIndex:(NSUInteger)index {
     NSLog(@"itemView点击index: %lu",(unsigned long)index);
     return YES;
+    NSCache *i;
 }
 @end

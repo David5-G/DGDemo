@@ -40,7 +40,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
+    NSOperation;
 }
 
 #pragma mark - interaction

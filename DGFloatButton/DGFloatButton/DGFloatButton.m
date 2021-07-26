@@ -61,6 +61,10 @@ typedef enum {
     }
 }
 
+-(void)testA {
+    NSLog(@"testA");
+}
+
 #pragma mark - pan手势
 /** 悬浮按钮移动事件处理 */
 - (void)handlePanGesture:(UIPanGestureRecognizer *)recognizer{
