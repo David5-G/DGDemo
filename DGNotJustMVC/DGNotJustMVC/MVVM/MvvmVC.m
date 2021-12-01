@@ -15,6 +15,7 @@
 #import "DGModel.h"
 //tool
 #import "DGDataSource.h"
+#import <ReactiveObjC.h>
 #define kCellReuseId @"cellResueId"
 
 @interface MvvmVC ()<MvvmTableViewCellDelegate>
@@ -76,6 +77,10 @@
         cell.nameLabel.text = [weakSelf.viewModel nameStrForIndexPath:indexPath];
         cell.num = [model.num intValue];
         cell.delegate = weakSelf;
+        
+//        [[cell.numLabel rac_valuesAndChangesForKeyPath:@"text" options:NSKeyValueObservingOptionNew observer:self] subscribeNext:^(RACTwoTuple<id,NSDictionary *> * _Nullable x) {
+//            NSLog(@"%@",x);
+//        }];
         
     } selectBlock:^(NSIndexPath * _Nonnull indexPath) {
         NSLog(@"mvvmVC --- 点击了第%ld行cell", (long)indexPath.row);

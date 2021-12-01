@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+typedef void(^DGBlock)(void);
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +19,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    __block int i = 0;
+    __weak DGBlock block = ^{
+        i += 1;
+        NSLog(@"dgBlock %d",i);
+    };
+    block();
+    
+    ^{
+        i += 1;
+        NSLog(@"dgBlock2 %d",i);
+    }();
+    
+    NSLog(@"dg %d",i);
+    
     return YES;
 }
 
