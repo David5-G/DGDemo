@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="KKGameReportTypeCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_report_type_select" translatesAutoresizingMaskIntoConstraints="NO" id="KJe-g0-2Vb">
+                        <rect key="frame" x="276" y="13" width="19" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="19" id="Aih-Hs-dYU"/>
+                            <constraint firstAttribute="height" constant="15" id="hiW-by-nzo"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ou3-qe-IiR">
+                        <rect key="frame" x="25" y="12.5" width="42" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="DfC-Qt-KlG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ou3-qe-IiR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="Ckh-Nx-4oB"/>
+                    <constraint firstAttribute="trailing" secondItem="KJe-g0-2Vb" secondAttribute="trailing" constant="25" id="Hzi-TK-2KQ"/>
+                    <constraint firstItem="KJe-g0-2Vb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ou3-qe-IiR" secondAttribute="trailing" constant="10" id="L1j-0j-Pb9"/>
+                    <constraint firstItem="ou3-qe-IiR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="0.5" id="P5G-iD-kO8"/>
+                    <constraint firstItem="KJe-g0-2Vb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-1.5" id="wa7-dD-swW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="leftTitleLabel" destination="ou3-qe-IiR" id="wE9-jF-ec3"/>
+                <outlet property="rightImageView" destination="KJe-g0-2Vb" id="oxT-MZ-HWL"/>
+            </connections>
+            <point key="canvasLocation" x="57.971014492753625" y="39.508928571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="game_report_type_select" width="19" height="14.5"/>
+    </resources>
+</document>

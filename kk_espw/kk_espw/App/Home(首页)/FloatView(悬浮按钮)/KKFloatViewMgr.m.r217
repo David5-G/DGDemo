@@ -1,0 +1,258 @@
+//
+//  KKFloatViewMgr.m
+//  kk_espw
+//
+//  Created by david on 2019/8/14.
+//  Copyright © 2019 david. All rights reserved.
+//
+
+#import "KKFloatViewMgr.h"
+#import "KKLiveStudioVC.h"
+#import "KKLiveStudioRtcMgr.h"
+#import "KKGameRoomManager.h"
+#import "KKGameRoomOwnerController.h"
+#import "KKHomeVC.h"
+#import "KKLiveStudioRtcMgr.h"
+#import "KKIMMgr.h"
+@implementation KKFloatViewMgr
+
+
+#pragma mark - life circle
+static KKFloatViewMgr *_floatViewMgr = nil;
+static dispatch_once_t onceToken;
+
++ (instancetype)shareInstance {
+    dispatch_once(&onceToken, ^{
+        _floatViewMgr = [[KKFloatViewMgr alloc] init];
+    });
+    return _floatViewMgr;
+}
+
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+        [self setupInfo];
+    }
+    return self;
+}
+
+- (void)setupInfo{
+//    //1.game
+//    NSDictionary *gameDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"GAME"];
+//    KKFloatGameRoomModel *gameModel = [KKFloatGameRoomModel mj_objectWithKeyValues:gameDic];
+//    self.gameRoomModel = gameModel;
+//    //2.liveStudio
+//    NSDictionary *liveStudioDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"LIVE"];
+//    KKFloatLiveStudioModel *liveStudioModel = [KKFloatLiveStudioModel mj_objectWithKeyValues:liveStudioDic];
+//    self.liveStudioModel = liveStudioModel;
+}
+
+- (void)dealloc {
+
+}
+
+#pragma mark -
+/// 离开招募厅
+-(void)tryToLeaveLiveStudio:(void(^)(void))success {
+    //1.当前悬浮的不是leaveStudio
+    if (self.liveStudioModel.studioId.length < 1) {
+        return;
+    }
+
+    //2.调招募厅的离开
+    [[KKLiveStudioVC shareInstance] publicLeaveLiveStudio:^{
+        
+        if (success) {
+            success();
+        }
+    }];
+}
+
+/// 离开开黑房
+- (void)tryToLeaveGameRoom:(void(^)(void))success {
+    [[KKGameRoomManager sharedInstance] exitFromGameRoomWith:nil alertBlock:nil success:success];
+}
+
+- (void)setLiveStudioModel:(KKFloatLiveStudioModel *)liveStudioModel {
+    _liveStudioModel = liveStudioModel;
+    [self showFloatView];
+}
+
+- (void)setGameRoomModel:(KKFloatGameRoomModel *)gameRoomModel {
+    _gameRoomModel = gameRoomModel;
+    [self showFloatView];
+}
+
+- (void)cleanLiveData {
+    self.liveStudioModel = nil;
+    [[KKFloatLiveStudioView shareInstance] removeFromSuperview];
+    [KKFloatLiveStudioView destroyInstance];
+}
+
+- (void)cleanGameData {
+    self.gameRoomModel = nil;
+    [[KKFloatGameRoomView shareInstance] removeFromSuperview];
+    [KKFloatGameRoomView destroyInstance];
+}
+
+-(void)showFloatView
+{
+    WS(weakSelf)
+    if (self.gameRoomModel.gameRoomId > 0) {
+        [[KKFloatGameRoomView shareInstance] showKhSuspendedView];
+        [[KKFloatGameRoomView shareInstance] addTapWithTimeInterval:0.3 tapBlock:^(UIView * _Nonnull view) {
+            [weakSelf pushGameBoardDetailRoomId:weakSelf.gameRoomModel.gameRoomId gameBoardId:weakSelf.gameRoomModel.gameBoardIdStr gameProfilesId:weakSelf.gameRoomModel.gameProfilesIdStr groupId:weakSelf.gameRoomModel.groupIdStr];
+        }];
+    }else{
+        [[KKFloatGameRoomView shareInstance] removeFromSuperview];
+        [KKFloatGameRoomView destroyInstance];
+    }
+    
+    
+    if (self.liveStudioModel.studioId.length != 0) {
+        [[KKFloatLiveStudioView shareInstance] showkSuspendedView];
+        
+        [[KKFloatLiveStudioView shareInstance] setTitle:self.liveStudioModel.title Name:self.liveStudioModel.hostName ImgUrl:self.liveStudioModel.hostLogoUrl];
+        
+        [[KKFloatLiveStudioView shareInstance] addTapWithTimeInterval:0.3 tapBlock:^(UIView * _Nonnull view) {
+            
+            [[KKLiveStudioRtcMgr shareInstance] requestJoinStudio:weakSelf.liveStudioModel.studioId success:^{
+                [weakSelf pushToLiveStudioVCWithStudioId:weakSelf.liveStudioModel.studioId];
+                
+                [[KKFloatLiveStudioView shareInstance] removeFromSuperview];
+                [KKFloatLiveStudioView destroyInstance];
+            }];
+        }];
+    }else{
+        [[KKFloatLiveStudioView shareInstance] removeFromSuperview];
+        [KKFloatLiveStudioView destroyInstance];
+    }
+}
+
+
+#pragma mark -
+-(void)checkShowFloatView
+{
+    [self checkShowGameRoomFloatView];
+    [self checkShowLiveStudioFloatView];
+}
+
+-(void)checkShowGameRoomFloatView
+{
+    [self requestGameRoomGroupInfo:^(bool success) {
+        if (!success) {
+            [self performSelector:@selector(checkShowGameRoomFloatView) withObject:nil afterDelay:5];
+        }
+    }];
+}
+
+-(void)checkShowLiveStudioFloatView
+{
+    [self requestUserOnlineLiveSuccess:^{
+    } Fail:^{
+        [self performSelector:@selector(checkShowLiveStudioFloatView) withObject:nil afterDelay:5];
+        
+    }];
+}
+
+-(void)requestGameRoomGroupInfo:(void(^)(bool)) block
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params safeSetObject:@"GAME_BOARD_CHAT_ROOM_JOINED_GROUPIDS_QUERY" forKey:@"service"];
+    [params safeSetObject:[KKUserInfoMgr shareInstance].userId forKey:@"userId"];
+    [[CC_HttpTask getInstance] post:[KKNetworkConfig currentUrl] params:params model:nil finishCallbackBlock:^(NSString *error, ResModel *resModel) {
+        if (error) {
+            [CC_Notice show:error];
+            block(NO);
+        } else {
+            NSDictionary *responseDic = resModel.resultDic[@"response"];
+            NSMutableArray *dataList = responseDic[@"groupIdList"];
+            
+            NSString *currentGroupId = dataList.firstObject;
+            if (currentGroupId) {
+                [self requestGameRoomInfoWithGroupId:currentGroupId success:^(bool success) {
+                    block(success);
+                }];
+            }else
+            {
+                block(YES);
+            }
+        }
+    }];
+}
+
+-(void)requestGameRoomInfoWithGroupId:(NSString *)groupId success:(void(^)(bool)) block
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params safeSetObject:@"GAME_BOARD_CHAT_ROOM_IS_JOINED_QUERY" forKey:@"service"];
+    [params safeSetObject:[KKUserInfoMgr shareInstance].userId forKey:@"userId"];
+    [params safeSetObject:groupId forKey:@"groupId"];
+    [[CC_HttpTask getInstance] post:[KKNetworkConfig currentUrl] params:params model:nil finishCallbackBlock:^(NSString *error, ResModel *resModel) {
+        if (error) {
+            [CC_Notice show:error];
+            block(NO);
+        } else {
+            NSDictionary *responseDic = resModel.resultDic[@"response"];
+            if ([responseDic[@"groupOwnerType"] isEqualToString:@""]) {
+                KKFloatGameRoomModel *gameModel = [KKFloatGameRoomModel new];
+                gameModel.gameRoomId = [responseDic[@"gameRoomId"] integerValue];
+                gameModel.gameProfilesIdStr = @"";
+                self.gameRoomModel = gameModel;
+            }
+            block(YES);
+        }
+    }];
+}
+
+
+- (void)pushGameBoardDetailRoomId:(NSInteger)roomid gameBoardId:(NSString *)gameBoardId gameProfilesId:(NSString *)gameProfilesId groupId:(NSString *)groupId {
+    CCLOG(@"roomid = %ld \ngameBoardId = %@ \ngameProfilesId = %@ \ngroupId = %@", roomid, gameBoardId, gameProfilesId, groupId);
+    KKGameRoomOwnerController *vc = [[KKGameRoomOwnerController alloc] init];
+    vc.gameProfilesIdStr = gameProfilesId;
+    vc.gameBoardIdStr = gameBoardId;
+    vc.gameRoomId = roomid;
+    vc.groupIdStr = groupId;
+    [[KKHomeVC topController].navigationController pushViewController:vc animated:YES];
+}
+
+- (void)requestUserOnlineLiveSuccess:(void(^)(void))success Fail:(void(^)(void))fail {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params safeSetObject:@"USER_INLINE_CHANNEL_QUERY" forKey:@"service"];
+    [[CC_HttpTask getInstance] post:[KKNetworkConfig currentUrl] params:params model:nil finishCallbackBlock:^(NSString *str, ResModel *resModel) {
+        NSDictionary *responseDic = resModel.resultDic[@"response"];
+        if (str) {
+            [CC_Notice show:str];
+            if (fail) {
+                fail();
+            }
+        }else {
+            NSArray *channelSimples  = responseDic[@"channelSimples"];
+            NSDictionary *channelDic = channelSimples.firstObject;
+            if (channelDic) {
+                KKFloatLiveStudioModel *liveStudioModel = [KKFloatLiveStudioModel new];
+                liveStudioModel.hostLogoUrl = channelDic[@"anchorLogoUrl"];
+                liveStudioModel.hostName = channelDic[@"anchorName"];
+                liveStudioModel.studioId = [channelDic[@"channelId"] stringValue];
+                liveStudioModel.title = channelDic[@"channelName"];
+                self.liveStudioModel = liveStudioModel;
+            }
+            if (success) {
+                success();
+            }
+        }
+    }];
+}
+
+/// 进入招募厅
+- (void)pushToLiveStudioVCWithStudioId:(NSString *)studioId {
+    [[KKIMMgr shareInstance] checkAndConnectRCSuccess:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            KKLiveStudioVC *liveStudioVC = [KKLiveStudioVC shareInstance];
+            liveStudioVC.studioId = studioId;
+            [[KKHomeVC topController].navigationController pushViewController:liveStudioVC animated:YES];
+        });
+    } error:^(RCConnectErrorCode status) {
+        
+    }];
+}
+@end

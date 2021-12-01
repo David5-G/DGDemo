@@ -1,0 +1,974 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - AMap3DMap (7.1.0):
+    - AMapFoundation (~> 1.5)
+  - AMapFoundation (1.5.7)
+  - AMapLocation (2.6.2):
+    - AMapFoundation (~> 1.4)
+  - AMapNavi (7.1.0):
+    - AMap3DMap (~> 7.0)
+    - AMapFoundation (~> 1.5)
+  - AMapSearch (6.9.0):
+    - AMapFoundation (~> 1.4)
+  - bench_ios (1.3.94):
+    - bench_ios/debugPlugin (= 1.3.94)
+    - bench_ios/display (= 1.3.94)
+    - bench_ios/extension (= 1.3.94)
+    - bench_ios/molecule (= 1.3.94)
+    - bench_ios/network (= 1.3.94)
+    - bench_ios/object (= 1.3.94)
+    - bench_ios/private (= 1.3.94)
+    - bench_ios/storage (= 1.3.94)
+    - bench_ios/thd (= 1.3.94)
+    - bench_ios/tool (= 1.3.94)
+  - bench_ios/debugPlugin (1.3.94)
+  - bench_ios/display (1.3.94)
+  - bench_ios/extension (1.3.94)
+  - bench_ios/molecule (1.3.94)
+  - bench_ios/network (1.3.94)
+  - bench_ios/object (1.3.94)
+  - bench_ios/private (1.3.94)
+  - bench_ios/storage (1.3.94)
+  - bench_ios/thd (1.3.94)
+  - bench_ios/tool (1.3.94)
+  - Bugly (2.5.0)
+  - DZNEmptyDataSet (1.8.1)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - IMUIKit (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/Common (= 1.0.0)
+    - IMUIKit/Contacts (= 1.0.0)
+    - IMUIKit/Conversation (= 1.0.0)
+    - IMUIKit/ConversationList (= 1.0.0)
+    - IMUIKit/NewFriends (= 1.0.0)
+    - IMUIKit/Util (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Common (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Contacts (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/Contacts/Controller (= 1.0.0)
+    - IMUIKit/Contacts/Model (= 1.0.0)
+    - IMUIKit/Contacts/NetworkAdapter (= 1.0.0)
+    - IMUIKit/Contacts/View (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Contacts/Controller (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Contacts/Model (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Contacts/NetworkAdapter (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Contacts/View (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/Conversation/Cell (= 1.0.0)
+    - IMUIKit/Conversation/CellData (= 1.0.0)
+    - IMUIKit/Conversation/Chat (= 1.0.0)
+    - IMUIKit/Conversation/GPS (= 1.0.0)
+    - IMUIKit/Conversation/Input (= 1.0.0)
+    - IMUIKit/Conversation/Locaton (= 1.0.0)
+    - IMUIKit/Conversation/Network (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Cell (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/Conversation/Cell/BusinessCard (= 1.0.0)
+    - IMUIKit/Conversation/Cell/Common (= 1.0.0)
+    - IMUIKit/Conversation/Cell/GameLinked (= 1.0.0)
+    - IMUIKit/Conversation/Cell/Image (= 1.0.0)
+    - IMUIKit/Conversation/Cell/Location (= 1.0.0)
+    - IMUIKit/Conversation/Cell/System (= 1.0.0)
+    - IMUIKit/Conversation/Cell/Text (= 1.0.0)
+    - IMUIKit/Conversation/Cell/Voice (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Cell/BusinessCard (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Cell/Common (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Cell/GameLinked (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Cell/Image (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Cell/Location (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Cell/System (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Cell/Text (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Cell/Voice (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/CellData (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Chat (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/Conversation/Chat/RongCloud (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Chat/RongCloud (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/GPS (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/Conversation/GPS/Controller (= 1.0.0)
+    - IMUIKit/Conversation/GPS/NetworkAdapter (= 1.0.0)
+    - IMUIKit/Conversation/GPS/View (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/GPS/Controller (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/GPS/NetworkAdapter (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/GPS/View (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Input (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/Conversation/Input/Controller (= 1.0.0)
+    - IMUIKit/Conversation/Input/Model (= 1.0.0)
+    - IMUIKit/Conversation/Input/View (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Input/Controller (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Input/Model (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Input/View (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Locaton (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/Conversation/Locaton/Controller (= 1.0.0)
+    - IMUIKit/Conversation/Locaton/Model (= 1.0.0)
+    - IMUIKit/Conversation/Locaton/View (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Locaton/Controller (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Locaton/Model (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Locaton/View (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Conversation/Network (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/ConversationList (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/ConversationList/Controller (= 1.0.0)
+    - IMUIKit/ConversationList/Model (= 1.0.0)
+    - IMUIKit/ConversationList/Network (= 1.0.0)
+    - IMUIKit/ConversationList/View (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/ConversationList/Controller (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/ConversationList/Model (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/ConversationList/Network (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/ConversationList/View (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/NewFriends (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - IMUIKit/NewFriends/Controller (= 1.0.0)
+    - IMUIKit/NewFriends/Model (= 1.0.0)
+    - IMUIKit/NewFriends/NetworkAdapter (= 1.0.0)
+    - IMUIKit/NewFriends/View (= 1.0.0)
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/NewFriends/Controller (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/NewFriends/Model (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/NewFriends/NetworkAdapter (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/NewFriends/View (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - IMUIKit/Util (1.0.0):
+    - AMap3DMap
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - bench_ios
+    - DZNEmptyDataSet
+    - Masonry
+    - MJRefresh
+    - RongCloudIM/IMLib
+    - SDWebImage (= 4.4.6)
+    - TXIMSDK_iOS (= 4.4.900)
+    - UITemplateKit
+  - JCore (2.1.1)
+  - JShare (1.6.0):
+    - JCore (< 3.0.0, >= 1.2.0)
+  - LoginKit (1.0.0):
+    - bench_ios
+    - LoginKit/CellBind (= 1.0.0)
+    - LoginKit/Login (= 1.0.0)
+    - LoginKit/Protocol (= 1.0.0)
+    - LoginKit/Pwd (= 1.0.0)
+    - LoginKit/RealName (= 1.0.0)
+    - LoginKit/Register (= 1.0.0)
+    - LoginKit/Role (= 1.0.0)
+    - LoginKit/Tool (= 1.0.0)
+    - LoginLib
+  - LoginKit/CellBind (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Login (1.0.0):
+    - bench_ios
+    - LoginKit/Login/Controller (= 1.0.0)
+    - LoginKit/Login/View (= 1.0.0)
+    - LoginLib
+  - LoginKit/Login/Controller (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Login/View (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Protocol (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Pwd (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/RealName (1.0.0):
+    - bench_ios
+    - LoginKit/RealName/Controller (= 1.0.0)
+    - LoginKit/RealName/View (= 1.0.0)
+    - LoginLib
+  - LoginKit/RealName/Controller (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/RealName/View (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Register (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Role (1.0.0):
+    - bench_ios
+    - LoginKit/Role/Controller (= 1.0.0)
+    - LoginKit/Role/Model (= 1.0.0)
+    - LoginKit/Role/View (= 1.0.0)
+    - LoginLib
+  - LoginKit/Role/Controller (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Role/Model (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Role/View (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Tool (1.0.0):
+    - bench_ios
+    - LoginKit/Tool/Base (= 1.0.0)
+    - LoginKit/Tool/View (= 1.0.0)
+    - LoginLib
+  - LoginKit/Tool/Base (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginKit/Tool/View (1.0.0):
+    - bench_ios
+    - LoginLib
+  - LoginLib (1.0.0):
+    - bench_ios
+    - LoginLib/Service (= 1.0.0)
+  - LoginLib/Service (1.0.0):
+    - bench_ios
+    - LoginLib/Service/CellBind (= 1.0.0)
+    - LoginLib/Service/Login (= 1.0.0)
+    - LoginLib/Service/LoginPwd (= 1.0.0)
+    - LoginLib/Service/Other (= 1.0.0)
+    - LoginLib/Service/RealName (= 1.0.0)
+    - LoginLib/Service/Register (= 1.0.0)
+    - LoginLib/Service/Role (= 1.0.0)
+    - LoginLib/Service/SmsCode (= 1.0.0)
+  - LoginLib/Service/CellBind (1.0.0):
+    - bench_ios
+  - LoginLib/Service/Login (1.0.0):
+    - bench_ios
+  - LoginLib/Service/LoginPwd (1.0.0):
+    - bench_ios
+  - LoginLib/Service/Other (1.0.0):
+    - bench_ios
+  - LoginLib/Service/RealName (1.0.0):
+    - bench_ios
+  - LoginLib/Service/Register (1.0.0):
+    - bench_ios
+  - LoginLib/Service/Role (1.0.0):
+    - bench_ios
+  - LoginLib/Service/SmsCode (1.0.0):
+    - bench_ios
+  - Masonry (1.1.0)
+  - MJExtension (3.1.0)
+  - MJRefresh (3.2.0)
+  - RongCloudIM/IMLib (2.9.25)
+  - RongRTCLib (3.1.3):
+    - RongCloudIM/IMLib (~> 2.9.24)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - TXIMSDK_iOS (4.4.900)
+  - UITemplateKit (1.0.2):
+    - bench_ios
+    - UITemplateKit/APPActionSet (= 1.0.2)
+    - UITemplateKit/listType (= 1.0.2)
+    - "UITemplateKit/下拉列表 (= 1.0.2)"
+    - "UITemplateKit/人员选取 (= 1.0.2)"
+    - "UITemplateKit/侧滑容器视图 (= 1.0.2)"
+    - "UITemplateKit/分类筛选 (= 1.0.2)"
+    - "UITemplateKit/分页器 (= 1.0.2)"
+    - "UITemplateKit/城市选择 (= 1.0.2)"
+    - "UITemplateKit/底部导航 (= 1.0.2)"
+    - "UITemplateKit/弹窗容器视图 (= 1.0.2)"
+    - "UITemplateKit/强提示 (= 1.0.2)"
+    - "UITemplateKit/强提示2 (= 1.0.2)"
+    - "UITemplateKit/搜索 (= 1.0.2)"
+    - "UITemplateKit/文章标题 (= 1.0.2)"
+    - "UITemplateKit/断网提示 (= 1.0.2)"
+    - "UITemplateKit/新特性 (= 1.0.2)"
+    - "UITemplateKit/日期选择 (= 1.0.2)"
+    - "UITemplateKit/照片选择 (= 1.0.2)"
+    - "UITemplateKit/登录 (= 1.0.2)"
+    - "UITemplateKit/简单容器视图 (= 1.0.2)"
+    - "UITemplateKit/级联选择视图 (= 1.0.2)"
+    - "UITemplateKit/聊天列表 (= 1.0.2)"
+    - "UITemplateKit/聊天详情 (= 1.0.2)"
+    - "UITemplateKit/表单容器视图 (= 1.0.2)"
+    - "UITemplateKit/贴纸视图 (= 1.0.2)"
+    - "UITemplateKit/轮播控件 (= 1.0.2)"
+    - "UITemplateKit/通用选择 (= 1.0.2)"
+    - "UITemplateKit/默认弹窗 (= 1.0.2)"
+  - UITemplateKit/APPActionSet (1.0.2):
+    - bench_ios
+  - UITemplateKit/listType (1.0.2):
+    - bench_ios
+    - Masonry
+  - "UITemplateKit/下拉列表 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/人员选取 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/侧滑容器视图 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/分类筛选 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/分页器 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/城市选择 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/底部导航 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/弹窗容器视图 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/强提示 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/强提示2 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/搜索 (1.0.2)":
+    - bench_ios
+    - "UITemplateKit/搜索/template (= 1.0.2)"
+  - "UITemplateKit/搜索/template (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/文章标题 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/断网提示 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/新特性 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/日期选择 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/照片选择 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/登录 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/简单容器视图 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/级联选择视图 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/聊天列表 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/聊天详情 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/表单容器视图 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/贴纸视图 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/轮播控件 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/通用选择 (1.0.2)":
+    - bench_ios
+  - "UITemplateKit/默认弹窗 (1.0.2)":
+    - bench_ios
+  - WechatOpenSDK_NoPay (1.8.0)
+  - ZBarSDK (1.3.1)
+
+DEPENDENCIES:
+  - AFNetworking (= 3.2.1)
+  - AMapLocation (= 2.6.2)
+  - AMapSearch (= 6.9.0)
+  - bench_ios (from `https://huored.gicp.net:8088/svn/bench_ios/trunk/bench_ios_net/tags/v1.3.94`)
+  - Bugly (= 2.5.0)
+  - FMDB (= 2.7.5)
+  - IMUIKit (from `https://huored.gicp.net:8088/svn/kkcommon_sdk_ios/trunk/kk_sdk/kk_sdk/SDKs/IMUIKit/tags/v1.0.0`)
+  - JShare (= 1.6.0)
+  - LoginKit (from `https://huored.gicp.net:8088/svn/kkcommon_sdk_ios/trunk/kk_sdk/kk_sdk/SDKs/LoginKit/tags/v1.0.0`)
+  - LoginLib (from `https://huored.gicp.net:8088/svn/kkcommon_sdk_ios/trunk/kk_sdk/kk_sdk/SDKs/LoginLib/tags/v1.0.0`)
+  - Masonry (= 1.1.0)
+  - MJExtension (= 3.1.0)
+  - MJRefresh (= 3.2.0)
+  - RongRTCLib (= 3.1.3)
+  - UITemplateKit (from `https://huored.gicp.net:8088/svn/bench_ios/trunk/UITemplate/tags/v1.0.2`)
+  - WechatOpenSDK_NoPay (~> 1.8.0)
+  - ZBarSDK (~> 1.3.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AMap3DMap
+    - AMapFoundation
+    - AMapLocation
+    - AMapNavi
+    - AMapSearch
+    - Bugly
+    - DZNEmptyDataSet
+    - FMDB
+    - JCore
+    - JShare
+    - Masonry
+    - MJExtension
+    - MJRefresh
+    - RongCloudIM
+    - RongRTCLib
+    - SDWebImage
+    - TXIMSDK_iOS
+    - WechatOpenSDK_NoPay
+    - ZBarSDK
+
+EXTERNAL SOURCES:
+  bench_ios:
+    :svn: https://huored.gicp.net:8088/svn/bench_ios/trunk/bench_ios_net/tags/v1.3.94
+  IMUIKit:
+    :svn: https://huored.gicp.net:8088/svn/kkcommon_sdk_ios/trunk/kk_sdk/kk_sdk/SDKs/IMUIKit/tags/v1.0.0
+  LoginKit:
+    :svn: https://huored.gicp.net:8088/svn/kkcommon_sdk_ios/trunk/kk_sdk/kk_sdk/SDKs/LoginKit/tags/v1.0.0
+  LoginLib:
+    :svn: https://huored.gicp.net:8088/svn/kkcommon_sdk_ios/trunk/kk_sdk/kk_sdk/SDKs/LoginLib/tags/v1.0.0
+  UITemplateKit:
+    :svn: https://huored.gicp.net:8088/svn/bench_ios/trunk/UITemplate/tags/v1.0.2
+
+CHECKOUT OPTIONS:
+  bench_ios:
+    :revision: '1217'
+    :svn: https://huored.gicp.net:8088/svn/bench_ios/trunk/bench_ios_net/tags/v1.3.94
+  IMUIKit:
+    :revision: '339'
+    :svn: https://huored.gicp.net:8088/svn/kkcommon_sdk_ios/trunk/kk_sdk/kk_sdk/SDKs/IMUIKit/tags/v1.0.0
+  LoginKit:
+    :revision: '339'
+    :svn: https://huored.gicp.net:8088/svn/kkcommon_sdk_ios/trunk/kk_sdk/kk_sdk/SDKs/LoginKit/tags/v1.0.0
+  LoginLib:
+    :revision: '339'
+    :svn: https://huored.gicp.net:8088/svn/kkcommon_sdk_ios/trunk/kk_sdk/kk_sdk/SDKs/LoginLib/tags/v1.0.0
+  UITemplateKit:
+    :revision: '1217'
+    :svn: https://huored.gicp.net:8088/svn/bench_ios/trunk/UITemplate/tags/v1.0.2
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AMap3DMap: ef26e2fb120ae9f1635b4b26b28df6d1379a05f0
+  AMapFoundation: 216d58448c80356434ac4332250a8fdb2f5c4d1e
+  AMapLocation: 89a7e4eb6040d32ba73c77a4966ecc66e46aa7c3
+  AMapNavi: 28a5c56377342428a7381ac6abab286ff33c6251
+  AMapSearch: af02822537e55b85a4752e9df5c19e4b9da82031
+  bench_ios: 0bf3b7672595f5cf945edddf7857dff35d118644
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  IMUIKit: 176db34775a17813618eb713237ac2e5485d83a6
+  JCore: 4072327557f0b83cc22dd4041f2f839740c0077b
+  JShare: a25b46aa9fd327ba86fe2ebaf02e5441441d5212
+  LoginKit: ec0a88d973364f8fd5aba3b5f6bea0460cc05e64
+  LoginLib: 76409c8cad78427fb9e0652e625884b39482c57b
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 6b69b3bef2864fd550ce1a184eda219e321209d2
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  RongCloudIM: cd6836aa86fbf6c02f7b6b5c895ea4caa894d67f
+  RongRTCLib: 10309786a52aa1180317e227b76194b5aec559d6
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  TXIMSDK_iOS: 54c04c0807ccf0c406366ef86cff663ea277e235
+  UITemplateKit: 532e5f7ccfb654df2b23e3ef305bf39b65d86af4
+  WechatOpenSDK_NoPay: 27366a152202a6a7c8a15fad4d07261e87fb2389
+  ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
+
+PODFILE CHECKSUM: 093a722fb4527a33c8e696ea586070c385fc9279
+
+COCOAPODS: 1.7.3

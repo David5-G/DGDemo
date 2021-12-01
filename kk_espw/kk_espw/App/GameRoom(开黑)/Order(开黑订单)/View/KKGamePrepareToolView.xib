@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KKGamePrepareToolView">
+            <connections>
+                <outlet property="bgView" destination="iN0-l3-epB" id="Dyq-W3-GLb"/>
+                <outlet property="rightBtn1" destination="Zsm-oI-XIV" id="4Sq-7I-CDM"/>
+                <outlet property="rightBtn1ToTrail" destination="WWj-pS-i3P" id="fZG-fa-vdH"/>
+                <outlet property="rightBtn1Width" destination="WUQ-mO-3jg" id="PR0-xu-hm9"/>
+                <outlet property="rightBtn2" destination="TZ5-EZ-yVk" id="9uM-WH-YDu"/>
+                <outlet property="rightBtn2ToRightBtn1" destination="QSB-Qg-bQt" id="j8H-zV-MCs"/>
+                <outlet property="rightBtn2Width" destination="1nx-9x-kiy" id="yxg-wO-V1B"/>
+                <outlet property="subTitleHeight" destination="zBp-27-oof" id="Ulx-i7-F9t"/>
+                <outlet property="subTitleLabel" destination="BU6-7l-mih" id="hgy-Hh-CIz"/>
+                <outlet property="subTitleToBottom" destination="f3f-Xa-6Ff" id="feu-8Y-J1B"/>
+                <outlet property="subTitleToRightBtn2" destination="wjm-g4-AjS" id="qFY-IJ-eBz"/>
+                <outlet property="titleLabel" destination="Q59-64-KUd" id="hyS-m3-6PC"/>
+                <outlet property="titleLabelToRightBtn2" destination="OGm-jR-BNg" id="rrr-LC-kEr"/>
+                <outlet property="titleToSubTitle" destination="xaa-4x-d6h" id="aCp-Y9-aMO"/>
+                <outlet property="titleToTop" destination="ooL-Qm-Doz" id="5e7-gH-bsW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KKGamePrepareToolView">
+            <rect key="frame" x="0.0" y="0.0" width="426" height="65"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zsm-oI-XIV" customClass="CC_Button">
+                    <rect key="frame" x="345" y="16" width="75" height="34"/>
+                    <color key="backgroundColor" red="0.92549019610000005" green="0.75686274509999996" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="WUQ-mO-3jg"/>
+                        <constraint firstAttribute="height" constant="34" id="XIw-Bw-CLN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                    <state key="normal" title="广播找人">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZ5-EZ-yVk" customClass="CC_Button">
+                    <rect key="frame" x="261" y="16" width="75" height="34"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="1nx-9x-kiy"/>
+                        <constraint firstAttribute="height" constant="34" id="YQW-E7-Zem"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                    <state key="normal" title="解散">
+                        <color key="titleColor" red="0.92549019610000005" green="0.75686274509999996" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击准备,等待游戏开始哦" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q59-64-KUd">
+                    <rect key="frame" x="14" y="13" width="237" height="17"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="13"/>
+                    <color key="textColor" red="0.21176470588235294" green="0.2196078431372549" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="将支付给房主8个火箭" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU6-7l-mih">
+                    <rect key="frame" x="14" y="40" width="237" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="zBp-27-oof"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="BU6-7l-mih" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="4De-om-X3f"/>
+                <constraint firstItem="Zsm-oI-XIV" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="0.5" id="GaA-6A-6Wo"/>
+                <constraint firstItem="Q59-64-KUd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="JML-5Y-jE0"/>
+                <constraint firstItem="TZ5-EZ-yVk" firstAttribute="leading" secondItem="Q59-64-KUd" secondAttribute="trailing" constant="10" id="OGm-jR-BNg"/>
+                <constraint firstItem="Zsm-oI-XIV" firstAttribute="leading" secondItem="TZ5-EZ-yVk" secondAttribute="trailing" constant="9" id="QSB-Qg-bQt"/>
+                <constraint firstAttribute="trailing" secondItem="Zsm-oI-XIV" secondAttribute="trailing" constant="6" id="WWj-pS-i3P"/>
+                <constraint firstAttribute="bottom" secondItem="BU6-7l-mih" secondAttribute="bottom" constant="11" id="f3f-Xa-6Ff"/>
+                <constraint firstItem="Q59-64-KUd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="ooL-Qm-Doz"/>
+                <constraint firstItem="TZ5-EZ-yVk" firstAttribute="leading" secondItem="BU6-7l-mih" secondAttribute="trailing" constant="10" id="wjm-g4-AjS"/>
+                <constraint firstItem="BU6-7l-mih" firstAttribute="top" secondItem="Q59-64-KUd" secondAttribute="bottom" constant="10" id="xaa-4x-d6h"/>
+                <constraint firstItem="TZ5-EZ-yVk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="0.5" id="yqU-dL-gLi"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="123.18840579710145" y="111.49553571428571"/>
+        </view>
+    </objects>
+</document>
